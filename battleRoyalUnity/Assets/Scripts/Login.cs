@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Login : MonoBehaviour
 {
     private string Error { get; set; }
-    private string Name { get; set; }
 
     private Text LoginText;
     private Button LoginButton;
@@ -19,20 +18,18 @@ public class Login : MonoBehaviour
     {
         LoginButton =  GameObject.Find("ButtonLogin").GetComponent<Button>();
         LoginButton.onClick.AddListener(onClickLoginButton);
-        PhotonClient.Instanse.OnLoginResponce += OnLoginHandler;
-        Name = "";
     }
 
     void onClickLoginButton()
     {
         LoginText = GameObject.Find("InputLogin/Text").GetComponent<Text>();
-        Name = LoginText.text;
-        if (Name == "Single")
+        string login = LoginText.text;
+        if (login == "Single")
         {
-            loadStartScene();
+            PhotonClient.Instanse.loadStartScene();
             return;
         }
-        PhotonClient.Instanse.SendLoginOperation(Name);
+        PhotonClient.Instanse.SendLoginOperation(login);
     }
 
     // Update is called once per frame
@@ -42,21 +39,4 @@ public class Login : MonoBehaviour
         //PhotonClient.Instanse.SendLoginOperation(Name);
     }
 
-
-    [System.Obsolete]
-    private void OnLoginHandler(object sender, LoginEventArgs e)
-    {
-        if (e.Error != ErrorCode.Success)
-        {
-            Error = "Error:" + e.Error.ToString();
-            return;
-        }
-        PhotonClient.Instanse.OnLoginResponce -= OnLoginHandler;
-        loadStartScene();
-    }
-
-    private void loadStartScene()
-    {
-        SceneManager.LoadScene("Game");
-    }
 }

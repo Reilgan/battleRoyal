@@ -9,6 +9,7 @@ namespace battleRoyalServer.Common
     public enum ParameterCode : byte
     {
         CharactedName,
-        ChatMessage
+        ChatMessage,
+        PlayerTemplate
     }
 }

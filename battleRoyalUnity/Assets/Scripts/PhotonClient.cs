@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using ExitGames.Client.Photon;
 using battleRoyalServer.Common;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 {
@@ -12,6 +13,8 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     public static PhotonClient _instance;
     public static PhotonClient Instanse
+
+    
     {
         get { return _instance; }
     }
@@ -19,6 +22,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     public PhotonPeer PhotonPeer { get; set; }
     public event EventHandler<LoginEventArgs> OnLoginResponce;
     public event EventHandler<ChatMessageEventArgs> OnReceiveChatMessage;
+    public event EventHandler<PlayerTemlateEventArgs> OnReceivePlayerTemplate;
     void Awake()
     {
         if (Instanse != null)
@@ -116,6 +120,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             case (byte)EventCode.ChatMessage:
                 ChatMessageHandler(eventData);
                 break;
+            case (byte)EventCode.PlayerTemplate:
+                PlayerTemplateHandler(eventData); 
+                break;
             default:
                 Debug.Log("Unknown event: " + eventData.Code);
                 break;
@@ -127,6 +134,11 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         return;
     }
     #endregion
+
+    public void loadStartScene()
+    {
+        SceneManager.LoadScene("Game");
+    }
 
     #region handler for responce
     private void LoginHandler(OperationResponse operationResponse)
@@ -151,9 +163,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             }
             return;
         }
-
-        if (OnLoginResponce != null)
-            OnLoginResponce(this, new LoginEventArgs(ErrorCode.Success));
+        loadStartScene();
     }
 
     private void ChatMessageHandler(EventData eventData)
@@ -164,8 +174,15 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         {
             OnReceiveChatMessage(this, new ChatMessageEventArgs(massege));
         }
+    }
 
-
+    private void PlayerTemplateHandler(EventData eventData)
+    {
+        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)eventData.Parameters[(byte)ParameterCode.PlayerTemplate];
+        if (OnReceivePlayerTemplate != null)
+        {
+            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(playerTemplate));
+        }
     }
 
     #endregion
@@ -188,6 +205,10 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         PhotonPeer.OpCustom((byte)OperationCode.GetRecentChatMessages, new Dictionary<byte, object>(), true);
     }
 
+    public void RequestLocalPlayerTemplate()
+    {
+        PhotonPeer.OpCustom((byte)OperationCode.GetLocalPlayerTemplate, new Dictionary<byte, object>(), true);
+    }
     #endregion
 
 }

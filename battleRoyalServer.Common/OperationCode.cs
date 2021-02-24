@@ -10,6 +10,7 @@ namespace battleRoyalServer.Common
     {
         Login,
         SendChatMessage,
-        GetRecentChatMessages
+        GetRecentChatMessages,
+        GetLocalPlayerTemplate
     }
 }

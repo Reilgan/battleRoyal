@@ -46,7 +46,6 @@ namespace battleRoyalServer
                     }
 
                     ClientsPool.Instance.AddClient(this);
-                    //TODO Возможно стоит определить ответ на добавление логина
                     OperationResponse resp = new OperationResponse(operationRequest.OperationCode);
                     SendOperationResponse(resp, sendParameters);
 
@@ -108,7 +107,6 @@ namespace battleRoyalServer
                         allMessagesEventData.SendTo(new BattleRoyalClient[] { this }, sendParameters);
                     }
 
-
                     break;
 
                 default:
@@ -118,3 +116,8 @@ namespace battleRoyalServer
         }
     }
 }
+
+//TODO Добавить определение шаблона локального игрока
+//Dictionary<string, object> playerTemplate = new Dictionary<string, object>();
+//playerTemplate.Add(loginRequest.CharactedName, null);
+//resp.Parameters = new Dictionary<byte, object>() { { (byte)ParameterCode.Player, playerTemplate } };
