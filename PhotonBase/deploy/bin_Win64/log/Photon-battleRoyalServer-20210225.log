@@ -1,0 +1,114 @@
+16264: 00:18:08.312 - ---
+16264: 00:18:08.312 - Service: "Photon Socket Server" starting
+16264: 00:18:08.312 - Config File: D:\BatteRoyal\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+16264: 00:18:08.314 - Will produce at most: 10 crash dumps
+16264: 00:18:08.314 - Action: run as exe
+16264: 00:18:08.314 - Server Starting...
+16264: 00:18:08.314 -    Tick count: 73759000 (wraps in: 48.8566 days)
+16264: 00:18:08.314 - Tick count 64: 73759000
+16264: 00:18:08.314 - Photon Version: 4.0.28.2962
+16264: 00:18:08.314 - PID: 16260
+16264: 00:18:08.314 - Config File: D:\BatteRoyal\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+16264: 00:18:08.315 - Will NOT log unimportant exceptions
+16264: 00:18:08.316 - Not using performance counters as they are not currently installed. Run the service with /InstallCounters to install them.
+16264: 00:18:08.316 - Shutdown timeout enabled: 30000ms
+16264: 00:18:08.316 - Starting I/O thread pool with 2 threads
+16264: 00:18:08.317 - Using Standard allocator
+16264: 00:18:08.317 - Max message size: 512000
+16264: 00:18:08.317 - Starting business logic thread pool with the following settings
+16264: 00:18:08.317 - InitialThreads: 4 threads
+16264: 00:18:08.317 - MinThreads: 4 threads
+16264: 00:18:08.317 - Thread pool is fixed size
+16264: 00:18:08.317 - Starting ENet thread pool with the following settings
+16264: 00:18:08.317 - InitialThreads: 2 threads
+16264: 00:18:08.317 - MinThreads: 2 threads
+16264: 00:18:08.317 - Thread pool is fixed size
+16264: 00:18:08.317 - OnlyDispatchTimers: False
+16264: 00:18:08.317 - S2S: flow control: Max pending writes: 50
+16264: 00:18:08.317 - S2S: flow control: Max queued buffers: 200
+16264: 00:18:08.317 - S2S: flow control: Max pending writes MUX: 500
+16264: 00:18:08.317 - S2S: flow control: Max queued buffers MUX: 2000
+16264: 00:18:08.317 - S2S: MaxInboundMessageSize: 512000
+16264: 00:18:08.317 - S2S: MaxOutboundMessageSize: 512000
+16264: 00:18:08.317 - S2S: No inactivity timeout
+16264: 00:18:08.321 - WebSocket S2S: MaxInboundMessageSize: 512000
+16264: 00:18:08.321 - WebSocket S2S: MaxOutboundMessageSize: 512000
+16264: 00:18:08.321 - WebSocket S2S: No inactivity timeout
+16264: 00:18:08.321 - Max Reliable Data In Transit (awaiting ACKs) per peer : 51200 bytes
+16264: 00:18:08.321 - Per peer bandwidth limit
+16264: 00:18:08.321 - Transmit Rate Limit: 256 KB/Sec
+16264: 00:18:08.321 - Limit period: 200ms
+16264: 00:18:08.321 - Limit per period: 52428 bytes
+16264: 00:18:08.321 - Max queued data for transmission per peer: 512000 bytes
+16264: 00:18:08.321 - Minimum retransmit timeout: 200
+16264: 00:18:08.321 - No Maximum retransmit timeout
+16264: 00:18:08.321 - Minimum ENet timeout: 5000ms
+16264: 00:18:08.321 - Maximum ENet timeout: 30000ms
+16264: 00:18:08.321 - Max Inbound Reliable Data Queued (awaiting resends of earlier sequence numbers) per peer : 163840 bytes
+16264: 00:18:08.321 - No RTT ACK adjustment timeout
+16264: 00:18:08.321 - Outbound ENet: MaxInboundMessageSize: 512000
+16264: 00:18:08.321 - Outbound ENet: MaxOutboundMessageSize: 512000
+16264: 00:18:10.343 - GetRuntime - About to load CLR - versions available:
+16264: 00:18:10.344 - v2.0.50727
+16264: 00:18:10.344 - v4.0.30319
+16264: 00:18:10.344 - Configuration requests: "v2.0.50727"
+16264: 00:18:10.344 - About to load version: "v2.0.50727"
+16264: 00:18:10.419 - About to load runtime: PhotonHostRuntime.PhotonDomainManager from PhotonHostRuntime, Culture=neutral, PublicKeyToken=02C301B61B060C4D
+16264: 00:18:10.419 - CLRBaseDirectory set to "D:\BatteRoyal\battleRoyal\PhotonBase\deploy"
+16264: 00:18:10.419 - Optimising event broadcast for 20 or more peers
+16264: 00:18:10.420 - Start: About to load CLR - versions available:
+16264: 00:18:10.420 - v2.0.50727
+16264: 00:18:10.420 - v4.0.30319
+16264: 00:18:10.420 - No preference in configuration file, will load latest.
+16264: 00:18:10.420 - About to load version: "v4.0.30319"
+16264: 00:18:10.424 - Loaded version: "v4.0.30319"
+16264: 00:18:10.620 - Photon host runtime loaded
+16264: 00:18:12.682 - LICENSE: No license file was found. Starting with Bootstrap License.
+16264: 00:18:12.683 - License is valid.
+16264: 00:18:12.683 - Licensed for 20 concurrent connections.
+16264: 00:18:12.683 - ENet: Max Reliable Data In Transit (awaiting ACKs) per peer : 51200 bytes
+16264: 00:18:12.683 - ENet: Per peer bandwidth limit
+16264: 00:18:12.683 - ENet: Transmit Rate Limit: 256 KB/Sec
+16264: 00:18:12.683 - ENet: Limit period: 200ms
+16264: 00:18:12.683 - ENet: Limit per period: 52428 bytes
+16264: 00:18:12.683 - ENet: Max queued data for transmission per peer: 512000 bytes
+16264: 00:18:12.683 - ENet: Minimum retransmit timeout: 200
+16264: 00:18:12.683 - No Maximum retransmit timeout
+16264: 00:18:12.683 - ENet: Minimum timeout: 5000ms
+16264: 00:18:12.683 - ENet: Maximum timeout: 30000ms
+16264: 00:18:12.683 - ENet: Max Inbound Reliable Data Queued (awaiting resends of earlier sequence numbers) per peer : 163840 bytes
+16264: 00:18:12.683 - No RTT ACK adjustment timeout
+16264: 00:18:12.683 - About to load application: battleRoyalServer from battleRoyalServer
+16264: 00:18:12.683 - Auto restart is enabled for application, existing connections will be terminated during restart
+16264: 00:18:12.683 - Application will restart 1000ms after the last change detected
+16264: 00:18:12.683 - Application will restart if files matching the following are changed: "dll;config"
+16264: 00:18:12.683 - Application will NOT restart if files matching the following are changed: "log4net.config"
+16264: 00:18:12.899 - Taking reference on default app domain
+16264: 00:18:13.079 - Application: "battleRoyalServer" started in app domain: 2
+16264: 00:18:13.079 - Adding TCP listener on: 0.0.0.0: 4530 with a listen backlog of: 150
+16264: 00:18:13.079 - TCP inactivity timeout: 10000ms
+16264: 00:18:13.079 - TCP disconnect timeout: 120000ms
+16264: 00:18:13.079 - MaxInboundMessageSize: 512000
+16264: 00:18:13.079 - MaxOutboundMessageSize: 512000
+16264: 00:18:13.079 - Forcing all applications ids to: "battleRoyalServer"
+16264: 00:18:13.080 - Serving policy file requests from: "D:\BatteRoyal\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy.xml"
+16264: 00:18:13.080 - Forcing all applications ids to: "battleRoyalServer"
+16264: 00:18:13.080 - MaxInboundMessageSize: 512000
+16264: 00:18:13.080 - MaxOutboundMessageSize: 512000
+16264: 00:18:13.080 - UDP address specified as: "0.0.0.0" adding listener to each available IPv4 address
+16264: 00:18:13.080 - Adding UDP listener on: 192.168.56.1: 5055 with a listen backlog of: 500
+16264: 00:18:13.080 - Adding UDP listener on: 192.168.0.109: 5055 with a listen backlog of: 500
+16264: 00:18:13.080 - Adding UDP listener on: 127.0.0.1: 5055 with a listen backlog of: 500
+16264: 00:18:13.080 - Adding WebSocket TCP listener on: 0.0.0.0: 9090 with a listen backlog of: 150
+16264: 00:18:13.080 - Nagle disabled
+16264: 00:18:13.080 - TCP inactivity timeout: 10000ms
+16264: 00:18:13.080 - MaxInboundMessageSize: 512000
+16264: 00:18:13.080 - MaxOutboundMessageSize: 512000
+16264: 00:18:13.080 - Forcing all applications ids to: "battleRoyalServer"
+16264: 00:18:13.080 - Will accept ANY sub-protocols from the client
+16264: 00:18:13.080 - No automatic WebSocket ping
+16264: 00:18:13.081 - Adding Policy File listener on: 0.0.0.0: 843 with a listen backlog of: 150 and serving Policy File: "D:\BatteRoyal\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy.xml"
+16264: 00:18:13.081 - TCP inactivity timeout: 10000ms
+16264: 00:18:13.081 - Adding Policy File listener on: 0.0.0.0: 943 with a listen backlog of: 150 and serving Policy File: "D:\BatteRoyal\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy-silverlight.xml"
+16264: 00:18:13.081 - TCP inactivity timeout: 10000ms
+16264: 00:18:13.100 - Service is running...

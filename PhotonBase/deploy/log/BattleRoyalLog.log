@@ -1361,3 +1361,15 @@ Exception:System.InvalidOperationException: Последовательность не содержит элеме
 2021-02-22 21:26:28,480 [1] INFO  Photon.SocketServer.ApplicationBase [(null)] - Application is stopping: AppId=battleRoyalServer
 2021-02-22 21:26:28,493 [1] DEBUG battleRoyalServer.BattleRoyalServer [(null)] - server stop
 2021-02-22 21:26:28,494 [1] INFO  Photon.SocketServer.ApplicationBase [(null)] - Application stop: AppId=battleRoyalServer
+2021-02-25 00:18:13,197 [1] DEBUG battleRoyalServer.BattleRoyalServer [(null)] - server start
+2021-02-25 00:18:13,216 [1] INFO  Photon.SocketServer.ApplicationBase [(null)] - Application start: AppId=battleRoyalServer; AppPath=D:\BatteRoyal\battleRoyal\PhotonBase\deploy\battleRoyalServer, Type=battleRoyalServer.BattleRoyalServer 
+2021-02-25 00:19:51,694 [8] DEBUG Photon.SocketServer.ApplicationBase [(null)] - OnInit - ConnID=0, IP 127.0.0.1 on port 5055, type = ENetListener
+2021-02-25 00:19:51,761 [8] DEBUG Photon.SocketServer.Protocol [(null)] - Parsed init message for application battleRoyalServer, client version 4.0.5.0, protocol GpBinaryV2 version 1.6 sdk 65535 using IPv6 False
+2021-02-25 00:19:51,801 [11] DEBUG battleRoyalServer.BattleRoyalClient [(null)] - Player connection ip: 127.0.0.1
+2021-02-25 00:21:33,381 [8] DEBUG Photon.SocketServer.ApplicationBase [(null)] - OnDisconnect - ConnID=0 reasonCode=TimeoutDisconnect
+2021-02-25 00:21:33,395 [14] DEBUG battleRoyalServer.BattleRoyalClient [(null)] - Disconnected: 
+2021-02-25 00:21:49,411 [8] DEBUG Photon.SocketServer.ApplicationBase [(null)] - OnInit - ConnID=1, IP 127.0.0.1 on port 5055, type = ENetListener
+2021-02-25 00:21:49,432 [8] DEBUG Photon.SocketServer.Protocol [(null)] - Parsed init message for application battleRoyalServer, client version 4.0.5.0, protocol GpBinaryV2 version 1.6 sdk 65535 using IPv6 False
+2021-02-25 00:21:49,446 [13] DEBUG battleRoyalServer.BattleRoyalClient [(null)] - Player connection ip: 127.0.0.1
+2021-02-25 01:06:10,518 [8] DEBUG Photon.SocketServer.ApplicationBase [(null)] - OnDisconnect - ConnID=1 reasonCode=TimeoutDisconnect
+2021-02-25 01:06:10,526 [14] DEBUG battleRoyalServer.BattleRoyalClient [(null)] - Disconnected: 
