@@ -16,6 +16,7 @@ namespace battleRoyalServer.Common
         public float RotationX { get; private set; }
         public float RotationY { get; private set; }
         public float RotationZ { get; private set; }
+        public float RotationW { get; private set; }
 
         public MoveEventArgs(Dictionary<byte, object> dict)
         {
@@ -27,6 +28,7 @@ namespace battleRoyalServer.Common
             RotationX = (float)dict[(byte)ParameterCode.rotationX];
             RotationY = (float)dict[(byte)ParameterCode.rotationY];
             RotationZ = (float)dict[(byte)ParameterCode.rotationZ];
+            RotationW = (float)dict[(byte)ParameterCode.rotationW];
         }
     }
 }

@@ -486,3 +486,214 @@
 10652: 19:46:35.626 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
 10632: 19:46:35.636 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='2'
 10652: 19:46:35.637 - CManagedHost::OnDomainUnload() - 2
+8988: 20:40:44.193 - Service is stopped...
+8988: 20:40:44.193 - Server shutting down...
+8988: 20:40:44.193 - Shutdown monitoring enabled, 30000ms before process abort
+8988: 20:40:44.193 - Notifying CLR applications of shutdown...
+8988: 20:40:44.193 - RequestApplicationStop: 3
+8988: 20:40:44.202 - RequestStop: defalt app domain
+8988: 20:40:44.203 - Shutting down WebSocket Outbound Connection Manager...
+8988: 20:40:44.203 - Shutting down TCP Outbound Connection Manager...
+8988: 20:40:44.203 - Shutting down ENet Outbound Connection Manager...
+8988: 20:40:44.203 - Disconnecting all outbound peers...
+8988: 20:40:44.203 - Shutting down ENet host...
+8988: 20:40:44.203 - Disconnecting all peers...
+8988: 20:40:44.203 - Shutting down socket servers...
+8988: 20:40:44.203 - Shutting down ENet thread pool...
+8988: 20:40:44.205 - Shutting down TCP inactivity timers...
+8988: 20:40:44.206 - WaitingForShutdownToComplete: NativePolicy:0.0.0.0:843
+8988: 20:40:44.206 - OnShutdownCompleted: NativePolicy:0.0.0.0:843
+8988: 20:40:44.206 - WaitingForShutdownToComplete: NativePolicy:0.0.0.0:943
+8988: 20:40:44.206 - OnShutdownCompleted: NativePolicy:0.0.0.0:943
+8988: 20:40:44.206 - WaitingForShutdownToComplete: TCP:0.0.0.0:4530
+8988: 20:40:44.206 - OnShutdownCompleted: TCP:0.0.0.0:4530
+8988: 20:40:44.206 - WaitingForShutdownToComplete: UDP:127.0.0.1:5055
+8988: 20:40:44.206 - OnShutdownCompleted: UDP:127.0.0.1:5055
+8988: 20:40:44.206 - WaitingForShutdownToComplete: UDP:192.168.0.105:5055
+8988: 20:40:44.206 - OnShutdownCompleted: UDP:192.168.0.105:5055
+8988: 20:40:44.206 - WaitingForShutdownToComplete: WebSocket:0.0.0.0:9090
+8988: 20:40:44.206 - OnShutdownCompleted: WebSocket:0.0.0.0:9090
+8988: 20:40:44.206 - Shutting down CLR applications...
+8988: 20:40:44.210 - Shutting down business logic thread pool...
+10652: 20:40:44.210 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
+10632: 20:40:44.218 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='3'
+10652: 20:40:44.219 - CManagedHost::OnDomainUnload() - 3
+8988: 20:40:44.225 - Shutting down I/O thread pool...
+8988: 20:40:44.225 - Destroying servers
+8988: 20:40:44.225 - Destroying WebSocket Outbound Connection Manager
+8988: 20:40:44.225 - Destroying TCP Outbound Connection Manager
+8988: 20:40:44.225 - Destroying TCP inactivity timer
+8988: 20:40:44.225 - Destroying ENet timer wheel
+8988: 20:40:44.225 - Destroying ENet host
+8988: 20:40:44.225 - Destroying ENet outbound host
+8988: 20:40:44.225 - Destroying HTTP inactivity timer
+8988: 20:40:44.225 - Destroying HTTP host
+8988: 20:40:44.225 - Destroying HTTP Chunk host
+8988: 20:40:44.225 - Flushing ENET buffer allocator...
+8988: 20:40:44.226 - Flushing TCP buffer handle allocator...
+8988: 20:40:44.226 - Flushing stream socket allocator...
+8988: 20:40:44.227 - Flushing inbound datagram socket allocator...
+8988: 20:40:44.229 - Flushing outbound datagram socket allocator...
+8988: 20:40:44.229 - Destroying CLR dispatcher
+8988: 20:40:44.229 - Destroying CLR applications
+8988: 20:40:44.230 - ~CCLRApplicationCollection() - Waiting up to 10 seconds for the CLR to release all of our objects
+8988: 20:40:44.230 - ~CCLRApplicationCollection() - Done. All objects released
+8988: 20:40:44.230 - ~CManagedHost() - Release default app domain
+8988: 20:40:44.230 - CManagedHost::OnDomainUnload() - 1
+8988: 20:40:44.230 - ~CManagedHost() - Waiting up to 10 seconds for CLR shutdown...
+8988: 20:40:44.230 - ~CManagedHost
+8988: 20:40:44.230 - Destroying ENet thread pool
+8988: 20:40:44.230 - Destroying Business logic thread pool
+8988: 20:40:44.230 - Destroying I/O thread pool
+8988: 20:40:44.230 - Destroying ENet buffer allocator
+8988: 20:40:44.230 - Destroying TCP buffer allocator
+8988: 20:40:44.230 - Destroying TCP socket allocator
+8988: 20:40:44.230 - Destroying ENet inbound socket allocator
+8988: 20:40:44.230 - Destroying ENet outbound socket allocator
+8988: 20:40:44.230 - Destroying shared datagram flow control data
+8988: 20:40:44.231 - Shutdown complete...
+8988: 20:40:44.231 - Service shutting down
+8988: 20:40:44.233 - Service shut down complete
+10996: 20:40:48.280 - ---
+10996: 20:40:48.280 - Service: "Photon Socket Server" starting
+10996: 20:40:48.280 - Config File: D:\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+10996: 20:40:48.281 - Will produce at most: 10 crash dumps
+10996: 20:40:48.281 - Action: run as exe
+10996: 20:40:48.281 - Server Starting...
+10996: 20:40:48.281 -    Tick count: 27288771 (wraps in: 49.3944 days)
+10996: 20:40:48.281 - Tick count 64: 27288771
+10996: 20:40:48.281 - Photon Version: 4.0.28.2962
+10996: 20:40:48.281 - PID: 7712
+10996: 20:40:48.282 - Config File: D:\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+10996: 20:40:48.282 - Will NOT log unimportant exceptions
+10996: 20:40:48.284 - Not using performance counters as they are not currently installed. Run the service with /InstallCounters to install them.
+10996: 20:40:48.284 - Shutdown timeout enabled: 30000ms
+10996: 20:40:48.284 - Starting I/O thread pool with 2 threads
+10996: 20:40:48.284 - Using Standard allocator
+10996: 20:40:48.284 - Max message size: 512000
+10996: 20:40:48.284 - Starting business logic thread pool with the following settings
+10996: 20:40:48.284 - InitialThreads: 4 threads
+10996: 20:40:48.284 - MinThreads: 4 threads
+10996: 20:40:48.284 - Thread pool is fixed size
+10996: 20:40:48.285 - Starting ENet thread pool with the following settings
+10996: 20:40:48.285 - InitialThreads: 2 threads
+10996: 20:40:48.285 - MinThreads: 2 threads
+10996: 20:40:48.285 - Thread pool is fixed size
+10996: 20:40:48.285 - OnlyDispatchTimers: False
+10996: 20:40:48.285 - S2S: flow control: Max pending writes: 50
+10996: 20:40:48.285 - S2S: flow control: Max queued buffers: 200
+10996: 20:40:48.285 - S2S: flow control: Max pending writes MUX: 500
+10996: 20:40:48.285 - S2S: flow control: Max queued buffers MUX: 2000
+10996: 20:40:48.285 - S2S: MaxInboundMessageSize: 512000
+10996: 20:40:48.285 - S2S: MaxOutboundMessageSize: 512000
+10996: 20:40:48.285 - S2S: No inactivity timeout
+10996: 20:40:48.288 - WebSocket S2S: MaxInboundMessageSize: 512000
+10996: 20:40:48.288 - WebSocket S2S: MaxOutboundMessageSize: 512000
+10996: 20:40:48.288 - WebSocket S2S: No inactivity timeout
+10996: 20:40:48.289 - Max Reliable Data In Transit (awaiting ACKs) per peer : 51200 bytes
+10996: 20:40:48.289 - Per peer bandwidth limit
+10996: 20:40:48.289 - Transmit Rate Limit: 256 KB/Sec
+10996: 20:40:48.289 - Limit period: 200ms
+10996: 20:40:48.289 - Limit per period: 52428 bytes
+10996: 20:40:48.289 - Max queued data for transmission per peer: 512000 bytes
+10996: 20:40:48.289 - Minimum retransmit timeout: 200
+10996: 20:40:48.289 - No Maximum retransmit timeout
+10996: 20:40:48.289 - Minimum ENet timeout: 5000ms
+10996: 20:40:48.289 - Maximum ENet timeout: 30000ms
+10996: 20:40:48.289 - Max Inbound Reliable Data Queued (awaiting resends of earlier sequence numbers) per peer : 163840 bytes
+10996: 20:40:48.289 - No RTT ACK adjustment timeout
+10996: 20:40:48.289 - Outbound ENet: MaxInboundMessageSize: 512000
+10996: 20:40:48.289 - Outbound ENet: MaxOutboundMessageSize: 512000
+10996: 20:40:48.291 - GetRuntime - About to load CLR - versions available:
+10996: 20:40:48.291 - v2.0.50727
+10996: 20:40:48.291 - v4.0.30319
+10996: 20:40:48.291 - Configuration requests: "v2.0.50727"
+10996: 20:40:48.291 - About to load version: "v2.0.50727"
+10996: 20:40:48.297 - About to load runtime: PhotonHostRuntime.PhotonDomainManager from PhotonHostRuntime, Culture=neutral, PublicKeyToken=02C301B61B060C4D
+10996: 20:40:48.297 - CLRBaseDirectory set to "D:\battleRoyal\PhotonBase\deploy"
+10996: 20:40:48.297 - Optimising event broadcast for 20 or more peers
+10996: 20:40:48.298 - Start: About to load CLR - versions available:
+10996: 20:40:48.298 - v2.0.50727
+10996: 20:40:48.298 - v4.0.30319
+10996: 20:40:48.298 - No preference in configuration file, will load latest.
+10996: 20:40:48.298 - About to load version: "v4.0.30319"
+10996: 20:40:48.299 - Loaded version: "v4.0.30319"
+10996: 20:40:48.454 - Photon host runtime loaded
+10996: 20:40:50.689 - LICENSE: No license file was found. Starting with Bootstrap License.
+10996: 20:40:50.689 - License is valid.
+10996: 20:40:50.689 - Licensed for 20 concurrent connections.
+10996: 20:40:50.689 - ENet: Max Reliable Data In Transit (awaiting ACKs) per peer : 51200 bytes
+10996: 20:40:50.689 - ENet: Per peer bandwidth limit
+10996: 20:40:50.689 - ENet: Transmit Rate Limit: 256 KB/Sec
+10996: 20:40:50.689 - ENet: Limit period: 200ms
+10996: 20:40:50.689 - ENet: Limit per period: 52428 bytes
+10996: 20:40:50.689 - ENet: Max queued data for transmission per peer: 512000 bytes
+10996: 20:40:50.689 - ENet: Minimum retransmit timeout: 200
+10996: 20:40:50.689 - No Maximum retransmit timeout
+10996: 20:40:50.689 - ENet: Minimum timeout: 5000ms
+10996: 20:40:50.689 - ENet: Maximum timeout: 30000ms
+10996: 20:40:50.689 - ENet: Max Inbound Reliable Data Queued (awaiting resends of earlier sequence numbers) per peer : 163840 bytes
+10996: 20:40:50.689 - No RTT ACK adjustment timeout
+10996: 20:40:50.689 - About to load application: battleRoyalServer from battleRoyalServer
+10996: 20:40:50.689 - Auto restart is enabled for application, existing connections will be terminated during restart
+10996: 20:40:50.689 - Application will restart 1000ms after the last change detected
+10996: 20:40:50.689 - Application will restart if files matching the following are changed: "dll;config"
+10996: 20:40:50.689 - Application will NOT restart if files matching the following are changed: "log4net.config"
+10996: 20:40:50.784 - Taking reference on default app domain
+10996: 20:40:50.833 - Application: "battleRoyalServer" started in app domain: 2
+10996: 20:40:50.833 - Adding TCP listener on: 0.0.0.0: 4530 with a listen backlog of: 150
+10996: 20:40:50.833 - TCP inactivity timeout: 10000ms
+10996: 20:40:50.833 - TCP disconnect timeout: 120000ms
+10996: 20:40:50.833 - MaxInboundMessageSize: 512000
+10996: 20:40:50.833 - MaxOutboundMessageSize: 512000
+10996: 20:40:50.833 - Forcing all applications ids to: "battleRoyalServer"
+10996: 20:40:50.834 - Serving policy file requests from: "D:\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy.xml"
+10996: 20:40:50.834 - Forcing all applications ids to: "battleRoyalServer"
+10996: 20:40:50.834 - MaxInboundMessageSize: 512000
+10996: 20:40:50.834 - MaxOutboundMessageSize: 512000
+10996: 20:40:50.834 - UDP address specified as: "0.0.0.0" adding listener to each available IPv4 address
+10996: 20:40:50.834 - Adding UDP listener on: 192.168.0.105: 5055 with a listen backlog of: 500
+10996: 20:40:50.834 - Adding UDP listener on: 127.0.0.1: 5055 with a listen backlog of: 500
+10996: 20:40:50.834 - Adding WebSocket TCP listener on: 0.0.0.0: 9090 with a listen backlog of: 150
+10996: 20:40:50.834 - Nagle disabled
+10996: 20:40:50.834 - TCP inactivity timeout: 10000ms
+10996: 20:40:50.834 - MaxInboundMessageSize: 512000
+10996: 20:40:50.834 - MaxOutboundMessageSize: 512000
+10996: 20:40:50.834 - Forcing all applications ids to: "battleRoyalServer"
+10996: 20:40:50.834 - Will accept ANY sub-protocols from the client
+10996: 20:40:50.834 - No automatic WebSocket ping
+10996: 20:40:50.835 - Adding Policy File listener on: 0.0.0.0: 843 with a listen backlog of: 150 and serving Policy File: "D:\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy.xml"
+10996: 20:40:50.835 - TCP inactivity timeout: 10000ms
+10996: 20:40:50.835 - Adding Policy File listener on: 0.0.0.0: 943 with a listen backlog of: 150 and serving Policy File: "D:\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy-silverlight.xml"
+10996: 20:40:50.835 - TCP inactivity timeout: 10000ms
+10996: 20:40:50.868 - Service is running...
+10292: 21:28:41.371 - Restarting application: "battleRoyalServer" due to file changes
+10292: 21:28:41.371 - Application: "battleRoyalServer" restart request (abort existing connections)
+10292: 21:28:41.471 - Taking reference on default app domain
+10292: 21:28:41.551 - Application: "battleRoyalServer" started in app domain: 3
+10292: 21:28:41.674 - RequestApplicationStop: 2
+10292: 21:28:41.678 - Application: "battleRoyalServer" stopped in app domain: 2 (abort existing connections)
+10292: 21:28:41.678 - Application: "battleRoyalServer" restart complete.
+6680: 21:28:41.678 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
+6108: 21:28:41.686 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='2'
+6680: 21:28:41.686 - CManagedHost::OnDomainUnload() - 2
+10292: 22:14:26.193 - Restarting application: "battleRoyalServer" due to file changes
+10292: 22:14:26.193 - Application: "battleRoyalServer" restart request (abort existing connections)
+10292: 22:14:26.286 - Taking reference on default app domain
+10292: 22:14:26.361 - Application: "battleRoyalServer" started in app domain: 4
+10292: 22:14:26.494 - RequestApplicationStop: 3
+10292: 22:14:26.498 - Application: "battleRoyalServer" stopped in app domain: 3 (abort existing connections)
+6680: 22:14:26.498 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
+10292: 22:14:26.498 - Application: "battleRoyalServer" restart complete.
+6108: 22:14:26.507 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='3'
+6680: 22:14:26.507 - CManagedHost::OnDomainUnload() - 3
+10292: 22:44:18.488 - Restarting application: "battleRoyalServer" due to file changes
+10292: 22:44:18.488 - Application: "battleRoyalServer" restart request (abort existing connections)
+10292: 22:44:18.568 - Taking reference on default app domain
+10292: 22:44:18.632 - Application: "battleRoyalServer" started in app domain: 5
+10292: 22:44:18.750 - RequestApplicationStop: 4
+10292: 22:44:18.754 - Application: "battleRoyalServer" stopped in app domain: 4 (abort existing connections)
+6680: 22:44:18.754 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
+10292: 22:44:18.754 - Application: "battleRoyalServer" restart complete.
+6108: 22:44:18.761 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='4'
+6680: 22:44:18.761 - CManagedHost::OnDomainUnload() - 4

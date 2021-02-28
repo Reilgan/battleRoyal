@@ -9,7 +9,8 @@ using System.Linq;
 
 public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 {
-    private const string CONNECTION = "31.28.27.99:5055";
+    public const string CONNECTION = "31.28.27.99:5055";
+    //public const string CONNECTION = "localhost:5055";
     private const string APP_NAME = "battleRoyalServer";
 
     public static PhotonClient _instance;
@@ -79,6 +80,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
                 break;
             case (byte)OperationCode.Move:
                 Debug.Log("зхзхзхззхзхз");
+                break;
+            case (byte)OperationCode.GetPlayersTemplate:
+                GetPlayersTemplateHandler(operationResponse);
                 break;
             default:
                 Debug.Log("Unknown OperationResponse:" + operationResponse.OperationCode);
@@ -202,6 +206,15 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             onReceiveMoveEventArgs(this, new MoveEventArgs(parametrs));
         }
     }
+
+    private void GetPlayersTemplateHandler(OperationResponse response)
+    {
+        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)response.Parameters[(byte)ParameterCode.PlayerTemplate];
+        if (OnReceivePlayerTemplate != null)
+        {
+            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(playerTemplate));
+        }
+    }
     #endregion
 
     #region Up-level Api
@@ -227,11 +240,16 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         PhotonPeer.OpCustom((byte)OperationCode.GetLocalPlayerTemplate, new Dictionary<byte, object>(), true);
     }
 
-    public void sendMovingToServer(Dictionary<byte, object> parametrs)
+    public void SendMovingToServer(Dictionary<byte, object> parametrs)
     {
         PhotonPeer.OpCustom((byte)OperationCode.Move,
                              parametrs,
                              false);
+    }
+
+    public void GetPlayersTemplate()
+    {
+        PhotonPeer.OpCustom((byte)OperationCode.GetPlayersTemplate, new Dictionary<byte, object>(), true);
     }
 
     #endregion

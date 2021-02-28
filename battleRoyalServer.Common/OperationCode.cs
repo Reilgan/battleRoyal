@@ -12,6 +12,7 @@ namespace battleRoyalServer.Common
         SendChatMessage,
         GetRecentChatMessages,
         GetLocalPlayerTemplate,
-        Move
+        Move,
+        GetPlayersTemplate
     }
 }

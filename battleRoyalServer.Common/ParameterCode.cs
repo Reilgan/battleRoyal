@@ -16,6 +16,7 @@ namespace battleRoyalServer.Common
         positionZ,
         rotationX,
         rotationY,
-        rotationZ
+        rotationZ,
+        rotationW
     }
 }

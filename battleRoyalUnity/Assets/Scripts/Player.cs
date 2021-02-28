@@ -23,8 +23,6 @@ public class Player : MonoBehaviour
 
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
     {
-        Debug.Log(CharactedName);
-        Debug.Log(e);
         if (e.CharactedName == CharactedName)
         {
             float posX = e.PositionX;
@@ -33,16 +31,17 @@ public class Player : MonoBehaviour
             float rotX = e.RotationX;
             float rotY = e.RotationY;
             float rotZ = e.RotationZ;
+            float rotW = e.RotationW;
 
             oldPosition = gameObject.transform.position;
             oldQuaterion = gameObject.transform.rotation;
 
             Vector3 position = new Vector3(posX, posY, posZ);
             Quaternion quaternion = new Quaternion();
-            quaternion.SetEulerRotation(rotX, rotY, rotZ);
+            quaternion.Set(rotX, rotY, rotZ, rotW);
 
-            gameObject.transform.rotation *= Quaternion.Lerp(oldQuaterion, quaternion, interpolationStep);
-            gameObject.transform.position = Vector3.Lerp(oldPosition, position, interpolationStep);
+            gameObject.transform.rotation = quaternion;
+            gameObject.transform.position = position;
 
         }
     }
@@ -55,10 +54,14 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        sendMovingToServer();
+        // Сообщать о перемещении можно только локальному пользователю
+        if(CharactedName == PhotonClient.Instanse.CharactedName)
+        {
+            SendMovingToServer();
+        }
     }
 
-    void sendMovingToServer() 
+    void SendMovingToServer() 
     {
         Vector3 position = gameObject.transform.position;
         Quaternion rotation = gameObject.transform.rotation;
@@ -70,10 +73,11 @@ public class Player : MonoBehaviour
             moveDict.Add((byte)ParameterCode.positionX, position.x);
             moveDict.Add((byte)ParameterCode.positionY, position.y);
             moveDict.Add((byte)ParameterCode.positionZ, position.z);
-            moveDict.Add((byte)ParameterCode.rotationX, rotation.eulerAngles.x);
-            moveDict.Add((byte)ParameterCode.rotationY, rotation.eulerAngles.y);
-            moveDict.Add((byte)ParameterCode.rotationZ, rotation.eulerAngles.z);
-            PhotonClient.Instanse.sendMovingToServer(moveDict);
+            moveDict.Add((byte)ParameterCode.rotationX, rotation.x);
+            moveDict.Add((byte)ParameterCode.rotationY, rotation.y);
+            moveDict.Add((byte)ParameterCode.rotationZ, rotation.z);
+            moveDict.Add((byte)ParameterCode.rotationW, rotation.w);
+            PhotonClient.Instanse.SendMovingToServer(moveDict);
             oldPosition = position;
             oldQuaterion = rotation;
         }

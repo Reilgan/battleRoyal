@@ -37,6 +37,9 @@ namespace battleRoyalServer.Operations
         [DataMember(Code = (byte)ParameterCode.rotationZ)]
         public float RotationZ { get; set; }
 
+        [DataMember(Code = (byte)ParameterCode.rotationW)]
+        public float RotationW { get; set; }
+
         public Dictionary<byte, object> GetParametersForEvent()
         {
             parameters = new Dictionary<byte, object>();
@@ -47,6 +50,7 @@ namespace battleRoyalServer.Operations
             parameters.Add((byte)ParameterCode.rotationX, RotationX);
             parameters.Add((byte)ParameterCode.rotationY, RotationY);
             parameters.Add((byte)ParameterCode.rotationZ, RotationZ);
+            parameters.Add((byte)ParameterCode.rotationW, RotationW);
             return parameters;
         }
 

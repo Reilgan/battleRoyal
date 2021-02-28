@@ -100,7 +100,6 @@ namespace battleRoyalServer
                         Dictionary<string, object> template = new Dictionary<string, object>();
                         template.Add(CharactedName, null);
                         eventDataPlayerTemp.Parameters = new Dictionary<byte, object>() { { (byte)ParameterCode.PlayerTemplate, template } };
-                        //SendEvent(eventDataPlayerTemp, sendParameters);
                         eventDataPlayerTemp.SendTo(ClientsPool.Instance.Clients, sendParameters);
                         break;
                     }
@@ -116,7 +115,22 @@ namespace battleRoyalServer
                         eventDataMove.SendTo(clientsForEven, sendParameters);
                         break;
                     }
+                case (byte)OperationCode.GetPlayersTemplate:
+                    {
+                        List<BattleRoyalClient> clientsForEven = new List<BattleRoyalClient>();
+                        clientsForEven.AddRange(ClientsPool.Instance.Clients);
+                        clientsForEven.Remove(this);
+                        foreach (BattleRoyalClient client in clientsForEven) 
+                        {
+                            OperationResponse resp = new OperationResponse(operationRequest.OperationCode);
+                            Dictionary<string, object> template = new Dictionary<string, object>();
+                            template.Add(client.CharactedName, null);
+                            resp.Parameters = new Dictionary<byte, object>() { { (byte)ParameterCode.PlayerTemplate, template } };
+                            SendOperationResponse(resp, sendParameters);
+                        }
 
+                        break;
+                    }
 
                 default:
                     log.Debug("Unknown OperationRequest recv: " + operationRequest.OperationCode);

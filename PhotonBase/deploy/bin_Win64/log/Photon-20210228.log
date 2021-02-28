@@ -22,3 +22,9 @@
 10968: 16:39:38.057 - Will produce at most: 10 crash dumps
 10968: 16:39:38.057 - Service shutting down
 10968: 16:39:38.058 - Service shut down complete
+11900: 20:40:44.185 - ---
+11900: 20:40:44.185 - Service: "Photon Socket Server" starting
+11900: 20:40:44.185 - Config File: D:\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+11900: 20:40:44.187 - Will produce at most: 10 crash dumps
+11900: 20:40:44.187 - Service shutting down
+11900: 20:40:44.188 - Service shut down complete

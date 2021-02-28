@@ -69,6 +69,7 @@ public class PlayersPool : MonoBehaviour
     {
         PhotonClient.Instanse.OnReceivePlayerTemplate += OnReceivePlayerTemplate;
         PhotonClient.Instanse.RequestLocalPlayerTemplate();
+        PhotonClient.Instanse.GetPlayersTemplate();
         Players = new Dictionary<string, object>();
         //TODO Дать запрос на получение шаблона игрового объекта перенести loadStartScene в соответствующий handler
     }
