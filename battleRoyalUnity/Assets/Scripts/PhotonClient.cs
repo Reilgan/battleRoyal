@@ -197,7 +197,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     {
         if (onReceiveMoveEventArgs != null)
         {
-            onReceiveMoveEventArgs(this, new MoveEventArgs(eventData.Parameters));
+            Dictionary<byte, object> parametrs = new Dictionary<byte, object>();
+            parametrs = eventData.Parameters;
+            onReceiveMoveEventArgs(this, new MoveEventArgs(parametrs));
         }
     }
     #endregion

@@ -476,3 +476,13 @@
 8988: 16:39:45.443 - Adding Policy File listener on: 0.0.0.0: 943 with a listen backlog of: 150 and serving Policy File: "D:\battleRoyal\PhotonBase\deploy\Policy\assets\socket-policy-silverlight.xml"
 8988: 16:39:45.443 - TCP inactivity timeout: 10000ms
 8988: 16:39:45.479 - Service is running...
+1804: 19:46:35.305 - Restarting application: "battleRoyalServer" due to file changes
+1804: 19:46:35.305 - Application: "battleRoyalServer" restart request (abort existing connections)
+1804: 19:46:35.398 - Taking reference on default app domain
+1804: 19:46:35.470 - Application: "battleRoyalServer" started in app domain: 3
+1804: 19:46:35.616 - RequestApplicationStop: 2
+1804: 19:46:35.626 - Application: "battleRoyalServer" stopped in app domain: 2 (abort existing connections)
+1804: 19:46:35.626 - Application: "battleRoyalServer" restart complete.
+10652: 19:46:35.626 - CManagedHost::OnDefaultAction() - OPR_AppDomainUnload - eUnloadAppDomain
+10632: 19:46:35.636 - Unloading Domain: ApplicationName = 'battleRoyalServer', DomainId='2'
+10652: 19:46:35.637 - CManagedHost::OnDomainUnload() - 2

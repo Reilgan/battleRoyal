@@ -20,22 +20,22 @@ namespace battleRoyalServer.Operations
         public string CharactedName { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.positionX)]
-        public string PositionX { get; set; }
+        public float PositionX { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.positionY)]
-        public string PositionY { get; set; }
+        public float PositionY { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.positionZ)]
-        public string PositionZ { get; set; }
+        public float PositionZ { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.rotationX)]
-        public string RotationX { get; set; }
+        public float RotationX { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.rotationY)]
-        public string RotationY { get; set; }
+        public float RotationY { get; set; }
 
         [DataMember(Code = (byte)ParameterCode.rotationZ)]
-        public string RotationZ { get; set; }
+        public float RotationZ { get; set; }
 
         public Dictionary<byte, object> GetParametersForEvent()
         {
