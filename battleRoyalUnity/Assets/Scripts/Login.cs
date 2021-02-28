@@ -13,7 +13,6 @@ public class Login : MonoBehaviour
     private Button LoginButton;
 
     // Start is called before the first frame update
-    [System.Obsolete("Login.cs: Спросить у знающих что не так с моей подпиской на onLoginResponce")]
     void Start()
     {
         LoginButton =  GameObject.Find("ButtonLogin").GetComponent<Button>();

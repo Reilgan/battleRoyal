@@ -19,3 +19,20 @@
 2021-02-19 22:28:04,408 [13] INFO  Photon.LoadBalancing.MasterServer.GameServer.IncomingGameServerPeer - OnDisconnect: game server connection closed (connectionId=2, serverId=e133fe91-01b8-4cc7-a464-e79c4b7617bd, reason=ClientDisconnect)
 2021-02-19 22:28:04,412 [1] INFO  Photon.SocketServer.ApplicationBase - Application is stopping: AppId=Master
 2021-02-19 22:28:04,545 [1] INFO  Photon.SocketServer.ApplicationBase - Application stop: AppId=Master
+2021-02-28 15:48:56,671 [1] INFO  Photon.LoadBalancing.MasterServer.MasterApplication - TokenCreator intialized with an expiration of 02:46:40
+2021-02-28 15:48:58,015 [1] INFO  Photon.SocketServer.Diagnostics.HttpQueuePerformanceCounters - HTTP Queue performance counters successfully initialized
+2021-02-28 15:48:58,016 [1] INFO  Photon.SocketServer.Diagnostics.HttpQueuePerformanceCounters - Internal HTTP Queue performance counters successfully created
+2021-02-28 15:48:58,018 [1] INFO  Photon.Common.Authentication.Diagnostic.CustomAuthResultCounters - Start to initialize Photon: Custom Authentication Results performance counters
+2021-02-28 15:48:58,020 [1] INFO  Photon.Common.Authentication.Diagnostic.CustomAuthResultCounters - Photon: Custom Authentication Results performance counters successfully initialized
+2021-02-28 15:48:58,040 [1] WARN  Photon.Common.LoadBalancer.LoadBalancer`1 - Could not initialize LoadBalancer from configuration: Invalid configuration file D:\battleRoyal\PhotonBase\deploy\LoadBalancer.config. Using default settings... (Файл 'D:\battleRoyal\PhotonBase\deploy\LoadBalancer.config' не найден.)
+2021-02-28 15:48:58,089 [1] INFO  Photon.LoadBalancing.MasterServer.GameApplication - TokenCreator intialized with an expiration of 02:46:40
+2021-02-28 15:48:58,159 [1] INFO  Photon.LoadBalancing.MasterServer.GameApplication - Application {Default}/{Default} starts without Redis
+2021-02-28 15:48:58,265 [1] INFO  Photon.LoadBalancing.Common.NodesReader - Import nodes
+2021-02-28 15:48:58,265 [1] WARN  Photon.LoadBalancing.Common.NodesReader - D:\battleRoyal\PhotonBase\deploy\Nodes.txt does not exist, CurrentNodeId = 0
+2021-02-28 15:48:58,266 [1] INFO  Photon.LoadBalancing.Common.NodesReader - Watching D:\battleRoyal\PhotonBase\deploy\Nodes.txt
+2021-02-28 15:48:58,266 [1] INFO  Photon.LoadBalancing.MasterServer.MasterApplication - Current Node (nodeId=0) is the active master (leader)
+2021-02-28 15:48:58,266 [1] INFO  Photon.SocketServer.ApplicationBase - Application start: AppId=Master; AppPath=D:\battleRoyal\PhotonBase\deploy\LoadBalancing\Master, Type=Photon.LoadBalancing.MasterServer.MasterApplication 
+2021-02-28 15:48:58,293 [1] INFO  Photon.SocketServer.Diagnostics.CounterPublisher - CounterPublisher started publishing ExitGames.Diagnostics.Monitoring.CounterSamplePublisher to ExitGames.Diagnostics.Monitoring.CounterSampleSender
+2021-02-28 15:48:58,334 [1] INFO  Photon.SocketServer.ApplicationBase - Application is stopping: AppId=Master
+2021-02-28 15:48:58,340 [11] INFO  Photon.LoadBalancing.MasterServer.GameServer.IncomingGameServerPeer - game server connection from 127.0.0.1:1641 established (id=2)
+2021-02-28 15:48:58,384 [1] INFO  Photon.SocketServer.ApplicationBase - Application stop: AppId=Master

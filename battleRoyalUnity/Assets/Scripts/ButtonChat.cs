@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ButtonChat : MonoBehaviour
 {
     private GameObject panel;
-    private bool panelVisible = true;
+    private bool panelVisible = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +17,8 @@ public class ButtonChat : MonoBehaviour
 
     public void onClickedButton()
     {
-
         panelVisible = !panelVisible;
         panel.SetActive(panelVisible);
-
     }
 
     // Update is called once per frame

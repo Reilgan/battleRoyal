@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using battleRoyalServer.Common;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayersPool : MonoBehaviour
@@ -9,12 +11,47 @@ public class PlayersPool : MonoBehaviour
     {
         get { return _instance; }
     }
-
+    public Dictionary<string, object> Players { get; private set; }
     public Player LocalPlayer { get; private set; }
 
-    public void CreateLocalPlayer(object objectTemplate) 
+    private void CreateLocalPlayer(Dictionary<string, object> objectTemplate) 
     {
-        LocalPlayer = new Player(objectTemplate);
+        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)objectTemplate;
+        string name = playerTemplate.ElementAt(0).Key;
+        if (name == null)
+        {
+            Debug.Log("Design error: Attempt to create a player without a name");
+            return;
+        }
+        if (playerTemplate[name] == null)
+        {
+            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Player player = obj.AddComponent<Player>();
+            player.CharactedName = name;
+            LocalPlayer = player;
+            return;
+        }
+        //TODO Распарсить пришедший словарь и собрать из него объект
+    }
+
+    private void CreatePlayer(Dictionary<string, object> objectTemplate)
+    {
+        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)objectTemplate;
+        string name = playerTemplate.ElementAt(0).Key;
+        if (name == null)
+        {
+            Debug.Log("Design error: Attempt to create a player without a name");
+            return;
+        }
+        if (playerTemplate[name] == null)
+        {
+            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Player player = obj.AddComponent<Player>();
+            player.CharactedName = name;
+            Players.Add(name, player);
+            return;
+        }
+        //TODO Распарсить пришедший словарь и собрать из него объект
     }
 
     // Start is called before the first frame update
@@ -30,7 +67,9 @@ public class PlayersPool : MonoBehaviour
 
     void Start()
     {
-
+        PhotonClient.Instanse.OnReceivePlayerTemplate += OnReceivePlayerTemplate;
+        PhotonClient.Instanse.RequestLocalPlayerTemplate();
+        Players = new Dictionary<string, object>();
         //TODO Дать запрос на получение шаблона игрового объекта перенести loadStartScene в соответствующий handler
     }
 
@@ -38,5 +77,24 @@ public class PlayersPool : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs e)
+    {
+        Dictionary<string, object> palyerTemplate = (Dictionary<string, object>)e.PlayerTemplate;
+        string name = palyerTemplate.ElementAt(0).Key;
+        Debug.Log("Connect player:" + name);
+        if (name == PhotonClient.Instanse.CharactedName)
+        {
+            CreateLocalPlayer(palyerTemplate);
+        }
+        else 
+        {
+            CreatePlayer(palyerTemplate);
+        }
+    }
+    ~PlayersPool() 
+    {
+        PhotonClient.Instanse.OnReceivePlayerTemplate -= OnReceivePlayerTemplate;
     }
 }

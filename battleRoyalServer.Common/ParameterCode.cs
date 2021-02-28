@@ -10,6 +10,12 @@ namespace battleRoyalServer.Common
     {
         CharactedName,
         ChatMessage,
-        PlayerTemplate
+        PlayerTemplate,
+        positionX,
+        positionY,
+        positionZ,
+        rotationX,
+        rotationY,
+        rotationZ
     }
 }

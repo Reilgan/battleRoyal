@@ -1,0 +1,12 @@
+14568: 20:58:04.060 - ---
+14568: 20:58:04.060 - Service: "Photon Socket Server" starting
+14568: 20:58:04.060 - Config File: D:\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+14568: 20:58:04.061 - Will produce at most: 10 crash dumps
+14568: 20:58:04.061 - Service shutting down
+14568: 20:58:04.061 - Service shut down complete
+13900: 20:58:42.350 - ---
+13900: 20:58:42.350 - Service: "Photon Socket Server" starting
+13900: 20:58:42.350 - Config File: D:\battleRoyal\PhotonBase\deploy\bin_Win64\PhotonServer.config
+13900: 20:58:42.351 - Will produce at most: 10 crash dumps
+13900: 20:58:42.351 - Service shutting down
+13900: 20:58:42.352 - Service shut down complete

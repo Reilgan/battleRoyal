@@ -29,7 +29,6 @@ public class Chat : MonoBehaviour
 
     private void onEndEdit(string text)
     {
-        Debug.Log(text);
         PhotonClient.Instanse.SendChatMessage(text);
         uiInputField.text = "";
     }

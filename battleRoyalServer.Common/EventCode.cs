@@ -9,6 +9,7 @@ namespace battleRoyalServer.Common
     public enum EventCode : byte
     {
         ChatMessage,
-        PlayerTemplate
+        PlayerTemplate,
+        Move
     }
 }

@@ -5,6 +5,7 @@ using ExitGames.Client.Photon;
 using battleRoyalServer.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 {
@@ -13,16 +14,16 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     public static PhotonClient _instance;
     public static PhotonClient Instanse
-
-    
     {
         get { return _instance; }
-    }
+    } 
+    public string CharactedName { get; private set; }
 
     public PhotonPeer PhotonPeer { get; set; }
     public event EventHandler<LoginEventArgs> OnLoginResponce;
     public event EventHandler<ChatMessageEventArgs> OnReceiveChatMessage;
     public event EventHandler<PlayerTemlateEventArgs> OnReceivePlayerTemplate;
+    public event EventHandler<MoveEventArgs> onReceiveMoveEventArgs;
     void Awake()
     {
         if (Instanse != null)
@@ -76,6 +77,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             case (byte)OperationCode.Login:
                 LoginHandler(operationResponse);
                 break;
+            case (byte)OperationCode.Move:
+                Debug.Log("зхзхзхззхзхз");
+                break;
             default:
                 Debug.Log("Unknown OperationResponse:" + operationResponse.OperationCode);
                 break;
@@ -123,6 +127,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             case (byte)EventCode.PlayerTemplate:
                 PlayerTemplateHandler(eventData); 
                 break;
+            case (byte)EventCode.Move:
+                moveEventHandler(eventData);
+                break;
             default:
                 Debug.Log("Unknown event: " + eventData.Code);
                 break;
@@ -163,6 +170,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
             }
             return;
         }
+        CharactedName = (string)operationResponse.Parameters[(byte)ParameterCode.CharactedName];
         loadStartScene();
     }
 
@@ -185,6 +193,10 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         }
     }
 
+    private void moveEventHandler(EventData eventData)
+    {
+        onReceiveMoveEventArgs(this, new MoveEventArgs(eventData.Parameters));
+    }
     #endregion
 
     #region Up-level Api
@@ -209,6 +221,14 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     {
         PhotonPeer.OpCustom((byte)OperationCode.GetLocalPlayerTemplate, new Dictionary<byte, object>(), true);
     }
+
+    public void sendMovingToServer(Dictionary<byte, object> parametrs)
+    {
+        PhotonPeer.OpCustom((byte)OperationCode.Move,
+                             parametrs,
+                             false);
+    }
+
     #endregion
 
 }
