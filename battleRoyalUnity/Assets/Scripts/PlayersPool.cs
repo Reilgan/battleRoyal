@@ -26,6 +26,7 @@ public class PlayersPool : MonoBehaviour
         if (playerTemplate[name] == null)
         {
             GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            obj.name = "LocalObject";
             Player player = obj.AddComponent<Player>();
             player.CharactedName = name;
             LocalPlayer = player;
