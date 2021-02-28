@@ -1010,6 +1010,7 @@ System.Exception: Can't find battleRoyalServer.dll in D:\battleRoyal\PhotonBase\
 2021-02-22 21:26:28,479 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - RequestStop: ApplicationName = 'battleRoyalServer', DomainId='2' -- calling Application.OnStopRequested()
 2021-02-22 21:26:28,491 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - RequestStop: ApplicationName = 'DefaultDomain', DomainId='1'
 2021-02-22 21:26:28,492 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Stop: ApplicationName = 'battleRoyalServer', DomainId='2' -- calling Application.TearDown()
+<<<<<<< HEAD
 2021-02-23 21:39:15,360 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Initialize: ApplicationName = 'DefaultDomain', DomainID = '1'
 2021-02-23 21:39:15,409 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AppDomains with unhandled exceptions are usually not unloaded and restarted.
 2021-02-23 21:39:15,411 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Getting license information:
@@ -1463,3 +1464,27 @@ System.Exception: Can't find battleRoyalServer.dll in D:\battleRoyal\PhotonBase\
 2021-02-28 16:39:45,493 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: ExitGames.Logging.Log4Net, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0 from file:///D:/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/ExitGames.Logging.Log4Net.DLL
 2021-02-28 16:39:45,618 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - PhotonRunning: ApplicationName = 'DefaultDomain', DomainId='1'
 2021-02-28 16:41:00,843 [11] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: battleRoyalServer.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null from file:///D:/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/battleRoyalServer.Common.DLL
+=======
+2021-02-25 00:18:10,587 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Initialize: ApplicationName = 'DefaultDomain', DomainID = '1'
+2021-02-25 00:18:10,613 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AppDomains with unhandled exceptions are usually not unloaded and restarted.
+2021-02-25 00:18:10,622 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Getting license information:
+2021-02-25 00:18:11,153 [ 1] INFO  PhotonHostRuntime.PhotonLicensing - LICENSE: No license file was found - starting with Bootstrap License.
+2021-02-25 00:18:11,160 [ 1] INFO  PhotonHostRuntime.PhotonLicensing - LICENSE: Expiration: never; floating license: no; max connections: 20; valid IPs: any
+2021-02-25 00:18:12,693 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - CreateAppDomain: name = 'battleRoyalServer' , assemblyName = 'battleRoyalServer'
+2021-02-25 00:18:12,702 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   ApplicationBase = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy'
+2021-02-25 00:18:12,709 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   PrivateBinPath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy\battleRoyalServer\bin;bin_Win64;Shared;'
+2021-02-25 00:18:12,715 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   ConfigurationFile = ''
+2021-02-25 00:18:12,722 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   CachePath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy\battleRoyalServer\bin\Cache'
+2021-02-25 00:18:12,872 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   ApplicationPath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy\battleRoyalServer'
+2021-02-25 00:18:12,880 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   BinaryPath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy\battleRoyalServer\bin'
+2021-02-25 00:18:12,885 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   ApplicationRootPath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy'
+2021-02-25 00:18:12,892 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager -   UnmanagedLogPath = 'D:\BatteRoyal\battleRoyal\PhotonBase\deploy\bin_Win64\log'
+2021-02-25 00:18:12,929 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: battleRoyalServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null from file:///D:/BatteRoyal/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/battleRoyalServer.DLL
+2021-02-25 00:18:12,935 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Photon SDK:4.0.28.11245
+2021-02-25 00:18:13,006 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: Photon.SocketServer, Version=4.0.28.11245, Culture=neutral, PublicKeyToken=48c2fa3b6988090e from file:///D:/BatteRoyal/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/Photon.SocketServer.DLL
+2021-02-25 00:18:13,052 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: ExitGamesLibs, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0 from file:///D:/BatteRoyal/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/ExitGamesLibs.DLL
+2021-02-25 00:18:13,073 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - Starting: name = 'battleRoyalServer', assemblyName = 'battleRoyalServer', typeName = 'battleRoyalServer.BattleRoyalServer'
+2021-02-25 00:18:13,101 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - PhotonRunning: ApplicationName = 'battleRoyalServer', DomainId='2' -- calling Application.Setup
+2021-02-25 00:18:13,119 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - AssemblyLoadEvent: ExitGames.Logging.Log4Net, Version=1.0.4.0, Culture=neutral, PublicKeyToken=eac0edd9746a4aa0 from file:///D:/BatteRoyal/battleRoyal/PhotonBase/deploy/battleRoyalServer/bin/ExitGames.Logging.Log4Net.DLL
+2021-02-25 00:18:13,242 [ 1] INFO  PhotonHostRuntime.PhotonDomainManager - PhotonRunning: ApplicationName = 'DefaultDomain', DomainId='1'
+>>>>>>> 5ef4600d328adef79f29d0c170356f5dc963ea7c
