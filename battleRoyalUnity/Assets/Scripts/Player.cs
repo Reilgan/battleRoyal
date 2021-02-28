@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
     {
         Debug.Log(CharactedName);
+        Debug.Log(e);
         if (e.CharactedName == CharactedName)
         {
             float posX = e.PositionX;

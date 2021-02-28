@@ -9,7 +9,7 @@ using System.Linq;
 
 public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 {
-    private const string CONNECTION = "localhost:5055";
+    private const string CONNECTION = "31.28.27.99:5055";
     private const string APP_NAME = "battleRoyalServer";
 
     public static PhotonClient _instance;
@@ -195,7 +195,10 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     private void moveEventHandler(EventData eventData)
     {
-        onReceiveMoveEventArgs(this, new MoveEventArgs(eventData.Parameters));
+        if (onReceiveMoveEventArgs != null)
+        {
+            onReceiveMoveEventArgs(this, new MoveEventArgs(eventData.Parameters));
+        }
     }
     #endregion
 
