@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayersPool : MonoBehaviour
 {
-    public GameObject[] prefab;
     public static PlayersPool _instance;
     public static PlayersPool Instanse
     {
@@ -14,7 +13,7 @@ public class PlayersPool : MonoBehaviour
     }
     public Dictionary<string, object> Players { get; private set; }
     public Player LocalPlayer { get; private set; }
-
+    public Prefabs prefab;
     private void CreateLocalPlayer(Dictionary<string, object> objectTemplate) 
     {
         Dictionary<string, object> playerTemplate = (Dictionary<string, object>)objectTemplate;
@@ -26,7 +25,9 @@ public class PlayersPool : MonoBehaviour
         }
         if (playerTemplate[name] == null)
         {
-            GameObject obj = Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
+            prefab = GameObject.Find("Prefabs").GetComponent<Prefabs>();
+            GameObject obj = Instantiate(prefab.prefab[1], new Vector3(0, 0, 0), Quaternion.identity);
+            //Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             obj.name = "LocalObject";
             Player player = obj.AddComponent<Player>();
             player.CharactedName = name;
@@ -47,9 +48,10 @@ public class PlayersPool : MonoBehaviour
         }
         if (playerTemplate[name] == null)
         {
-            
+
             //GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            GameObject obj = Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
+            prefab = GameObject.Find("Prefabs").GetComponent<Prefabs>();
+            GameObject obj = Instantiate(prefab.prefab[1], new Vector3(0, 0, 0), Quaternion.identity);
             Player player = obj.AddComponent<Player>();
             player.CharactedName = name;
             Players.Add(name, player);
@@ -75,7 +77,8 @@ public class PlayersPool : MonoBehaviour
         PhotonClient.Instanse.RequestLocalPlayerTemplate();
         PhotonClient.Instanse.GetPlayersTemplate();
         Players = new Dictionary<string, object>();
-        //TODO Дать запрос на получение шаблона игрового объекта перенести loadStartScene в соответствующий handler
+        
+
     }
 
     // Update is called once per frame
