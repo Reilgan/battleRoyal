@@ -20,7 +20,13 @@ public class Player : MonoBehaviour
         oldPosition = gameObject.transform.position;
         oldQuaterion = gameObject.transform.rotation;
         PhotonClient.Instanse.onReceiveMoveEventArgs += onReceiveMoveEventArgs;
-        carController = GameObject.Find("LocalObject/Body");
+        if (gameObject.name == "LocalObject")
+        {
+            carController = GameObject.Find("LocalObject/Body");
+        }
+        else {
+            carController = gameObject;
+        }
     }
 
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
@@ -35,15 +41,15 @@ public class Player : MonoBehaviour
             float rotZ = e.RotationZ;
             float rotW = e.RotationW;
 
-            oldPosition = gameObject.transform.position;
-            oldQuaterion = gameObject.transform.rotation;
+            oldPosition = carController.transform.position;
+            oldQuaterion = carController.transform.rotation;
 
             Vector3 position = new Vector3(posX, posY, posZ);
             Quaternion quaternion = new Quaternion();
             quaternion.Set(rotX, rotY, rotZ, rotW);
 
-            gameObject.transform.rotation = quaternion;
-            gameObject.transform.position = position;
+            carController.transform.rotation = quaternion;
+            carController.transform.position = position;
 
         }
     }
@@ -68,7 +74,7 @@ public class Player : MonoBehaviour
         Vector3 position = carController.transform.position;
         Quaternion rotation = carController.transform.rotation;
 
-        if (oldPosition != position ^ oldQuaterion != rotation)
+        if (oldPosition != position)
         {
             Dictionary<byte, object> moveDict = new Dictionary<byte, object>();
             moveDict.Add((byte)ParameterCode.CharactedName, CharactedName);
