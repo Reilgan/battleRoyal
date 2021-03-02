@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private static float interpolationStep = 0.5f;
     private Vector3 oldPosition;
     private Quaternion oldQuaterion;
+    private GameObject carController;
 
     public string CharactedName { get; set; }
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         oldPosition = gameObject.transform.position;
         oldQuaterion = gameObject.transform.rotation;
         PhotonClient.Instanse.onReceiveMoveEventArgs += onReceiveMoveEventArgs;
+        carController = GameObject.Find("LocalObject/Body");
     }
 
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
@@ -63,8 +65,8 @@ public class Player : MonoBehaviour
 
     void SendMovingToServer() 
     {
-        Vector3 position = gameObject.transform.position;
-        Quaternion rotation = gameObject.transform.rotation;
+        Vector3 position = carController.transform.position;
+        Quaternion rotation = carController.transform.rotation;
 
         if (oldPosition != position ^ oldQuaterion != rotation)
         {

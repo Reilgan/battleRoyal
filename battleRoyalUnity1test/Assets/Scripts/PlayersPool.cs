@@ -26,7 +26,7 @@ public class PlayersPool : MonoBehaviour
         if (playerTemplate[name] == null)
         {
             prefab = GameObject.Find("Prefabs").GetComponent<Prefabs>();
-            GameObject obj = Instantiate(prefab.prefab[1], new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject obj = Instantiate(prefab.prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             //Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             obj.name = "LocalObject";
             Player player = obj.AddComponent<Player>();
@@ -51,7 +51,7 @@ public class PlayersPool : MonoBehaviour
 
             //GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
             prefab = GameObject.Find("Prefabs").GetComponent<Prefabs>();
-            GameObject obj = Instantiate(prefab.prefab[1], new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject obj = Instantiate(prefab.prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             Player player = obj.AddComponent<Player>();
             player.CharactedName = name;
             Players.Add(name, player);
