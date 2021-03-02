@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
-using battleRoyalServer.Common;
+using gameServer.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
@@ -67,6 +67,10 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     void Update()
     {
         
+    }
+    public void loadStartScene()
+    {
+        SceneManager.LoadScene("Game");
     }
 
     #region IPhotonPeerListener
@@ -146,11 +150,6 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     }
     #endregion
 
-    public void loadStartScene()
-    {
-        SceneManager.LoadScene("Game");
-    }
-
     #region handler for responce
     private void LoginHandler(OperationResponse operationResponse)
     {
@@ -190,10 +189,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     private void PlayerTemplateHandler(EventData eventData)
     {
-        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)eventData.Parameters[(byte)ParameterCode.PlayerTemplate];
         if (OnReceivePlayerTemplate != null)
         {
-            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(playerTemplate));
+            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(eventData.Parameters));
         }
     }
 
@@ -209,10 +207,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     private void GetPlayersTemplateHandler(OperationResponse response)
     {
-        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)response.Parameters[(byte)ParameterCode.PlayerTemplate];
         if (OnReceivePlayerTemplate != null)
         {
-            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(playerTemplate));
+            OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(response.Parameters));
         }
     }
     #endregion

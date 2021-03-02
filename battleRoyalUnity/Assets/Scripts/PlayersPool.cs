@@ -1,4 +1,4 @@
-﻿using battleRoyalServer.Common;
+﻿using gameServer.Common;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,45 +14,39 @@ public class PlayersPool : MonoBehaviour
     public Dictionary<string, object> Players { get; private set; }
     public Player LocalPlayer { get; private set; }
 
-    private void CreateLocalPlayer(Dictionary<string, object> objectTemplate) 
+    private void CreateLocalPlayer(PlayerTemlateEventArgs localPlayerTemplate) 
     {
-        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)objectTemplate;
-        string name = playerTemplate.ElementAt(0).Key;
+        string name = localPlayerTemplate.CharactedName;
         if (name == null)
         {
             Debug.Log("Design error: Attempt to create a player without a name");
+            //TODO нужен ответ на неудачное создание локального игрока
             return;
         }
-        if (playerTemplate[name] == null)
-        {
-            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            obj.name = "LocalObject";
-            Player player = obj.AddComponent<Player>();
-            player.CharactedName = name;
-            LocalPlayer = player;
-            return;
-        }
-        //TODO Распарсить пришедший словарь и собрать из него объект
+        //TODO Распарсить пришедший шаблон и собрать из него объект
+        GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        obj.name = "LocalObject";
+        Player player = obj.AddComponent<Player>();
+        player.CharactedName = name;
+        LocalPlayer = player;
+        return;
     }
 
-    private void CreatePlayer(Dictionary<string, object> objectTemplate)
+    private void CreatePlayer(PlayerTemlateEventArgs playerTemplate)
     {
-        Dictionary<string, object> playerTemplate = (Dictionary<string, object>)objectTemplate;
-        string name = playerTemplate.ElementAt(0).Key;
+        string name = playerTemplate.CharactedName;
         if (name == null)
         {
             Debug.Log("Design error: Attempt to create a player without a name");
+            //TODO нужен ответ на неудачное создание игрока
             return;
         }
-        if (playerTemplate[name] == null)
-        {
-            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            Player player = obj.AddComponent<Player>();
-            player.CharactedName = name;
-            Players.Add(name, player);
-            return;
-        }
-        //TODO Распарсить пришедший словарь и собрать из него объект
+        //TODO Распарсить пришедший шаблон и собрать из него объект
+        GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Player player = obj.AddComponent<Player>();
+        player.CharactedName = name;
+        Players.Add(name, player);
+        return;
     }
 
     // Start is called before the first frame update
@@ -81,18 +75,16 @@ public class PlayersPool : MonoBehaviour
         
     }
 
-    private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs e)
+    private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs player)
     {
-        Dictionary<string, object> palyerTemplate = (Dictionary<string, object>)e.PlayerTemplate;
-        string name = palyerTemplate.ElementAt(0).Key;
-        Debug.Log("Connect player:" + name);
-        if (name == PhotonClient.Instanse.CharactedName)
+        Debug.Log("Connect player:" + player.CharactedName);
+        if (player.CharactedName == PhotonClient.Instanse.CharactedName)
         {
-            CreateLocalPlayer(palyerTemplate);
+            CreateLocalPlayer(player);
         }
         else 
         {
-            CreatePlayer(palyerTemplate);
+            CreatePlayer(player);
         }
     }
     ~PlayersPool() 
