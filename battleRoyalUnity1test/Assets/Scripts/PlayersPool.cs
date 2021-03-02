@@ -48,7 +48,8 @@ public class PlayersPool : MonoBehaviour
         if (playerTemplate[name] == null)
         {
             
-            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject obj = Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             Player player = obj.AddComponent<Player>();
             player.CharactedName = name;
             Players.Add(name, player);
