@@ -27,6 +27,7 @@ public class PlayersPool : MonoBehaviour
         {
             prefab = GameObject.Find("Prefabs").GetComponent<Prefabs>();
             GameObject obj = Instantiate(prefab.prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
+            
             //Instantiate(prefab[0], new Vector3(0, 0, 0), Quaternion.identity);
             obj.name = "LocalObject";
             Player player = obj.AddComponent<Player>();

@@ -148,7 +148,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     public void loadStartScene()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Garage");
     }
 
     #region handler for responce
