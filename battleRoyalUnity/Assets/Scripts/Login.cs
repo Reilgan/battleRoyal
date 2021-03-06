@@ -23,12 +23,7 @@ public class Login : MonoBehaviour
     {
         LoginText = GameObject.Find("InputLogin/Text").GetComponent<Text>();
         string login = LoginText.text;
-        if (login == "Single")
-        {
-            PhotonClient.Instanse.loadStartScene();
-            return;
-        }
-        PhotonClient.Instanse.SendLoginOperation(login);
+        MasterClient.Instanse.SendLoginOperation(login);
     }
 
     // Update is called once per frame

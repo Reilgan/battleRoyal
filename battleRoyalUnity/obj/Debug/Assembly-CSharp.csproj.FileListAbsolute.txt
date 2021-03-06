@@ -285,5 +285,7 @@ D:\battleRoyal\battleRoyalUnity\obj\Debug\Assembly-CSharp.csproj.CoreCompileInpu
 D:\battleRoyal\battleRoyalUnity\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\battleRoyal\battleRoyalUnity\obj\Debug\Assembly-CSharp.dll
 D:\battleRoyal\battleRoyalUnity\obj\Debug\Assembly-CSharp.pdb
-D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\battleRoyalServer.Common.dll
-D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\battleRoyalServer.Common.pdb
+D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\gameServer.Common.dll
+D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\gameServer.Common.pdb
+D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\Newtonsoft.Json.dll
+D:\battleRoyal\battleRoyalUnity\Temp\bin\Debug\Newtonsoft.Json.xml

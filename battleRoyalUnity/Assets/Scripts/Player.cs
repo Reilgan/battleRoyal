@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         oldPosition = gameObject.transform.position;
         oldQuaterion = gameObject.transform.rotation;
-        PhotonClient.Instanse.onReceiveMoveEventArgs += onReceiveMoveEventArgs;
+        GameClient.Instanse.onReceiveMoveEventArgs += onReceiveMoveEventArgs;
     }
 
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         // Сообщать о перемещении можно только локальному пользователю
-        if(CharactedName == PhotonClient.Instanse.CharactedName)
+        if(CharactedName == GameClient.Instanse.Player.Name)
         {
             SendMovingToServer();
         }
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
             moveDict.Add((byte)ParameterCode.rotationY, rotation.y);
             moveDict.Add((byte)ParameterCode.rotationZ, rotation.z);
             moveDict.Add((byte)ParameterCode.rotationW, rotation.w);
-            PhotonClient.Instanse.SendMovingToServer(moveDict);
+            GameClient.Instanse.SendMovingToServer(moveDict);
             oldPosition = position;
             oldQuaterion = rotation;
         }

@@ -2,23 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
-using gameServer.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using gameServer.Common;
 
-public class PhotonClient : MonoBehaviour, IPhotonPeerListener
+public class GameClient : MonoBehaviour, IPhotonPeerListener
 {
-    public const string CONNECTION = "31.28.27.99:5055";
-    //public const string CONNECTION = "localhost:5055";
-    private const string APP_NAME = "battleRoyalServer";
+    //public const string CONNECTION = "31.28.27.99:5055";
+    public const string CONNECTION = "localhost:5056";
+    private const string APP_NAME = "GameServer";
 
-    public static PhotonClient _instance;
-    public static PhotonClient Instanse
+    public static GameClient _instance;
+    public static GameClient Instanse
     {
         get { return _instance; }
     } 
-    public string CharactedName { get; private set; }
+    public StructPlayer Player { get; set; }
 
     public PhotonPeer PhotonPeer { get; set; }
     public event EventHandler<LoginEventArgs> OnLoginResponce;
@@ -68,10 +68,6 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     {
         
     }
-    public void loadStartScene()
-    {
-        SceneManager.LoadScene("Game");
-    }
 
     #region IPhotonPeerListener
     public void OnOperationResponse(OperationResponse operationResponse)
@@ -79,12 +75,6 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
         switch (operationResponse.OperationCode)
         {
-            case (byte)OperationCode.Login:
-                LoginHandler(operationResponse);
-                break;
-            case (byte)OperationCode.Move:
-                Debug.Log("зхзхзхззхзхз");
-                break;
             case (byte)OperationCode.GetPlayersTemplate:
                 GetPlayersTemplateHandler(operationResponse);
                 break;
@@ -99,28 +89,28 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
         switch (statusCode)
         {
             case StatusCode.Connect:
-                Debug.Log("Connect to server");
+                Debug.Log("Connect to game server");
                 break;
             case StatusCode.Disconnect:
-                Debug.Log("Disconnect to server");
+                Debug.Log("Disconnect to game server");
                 break;
             case StatusCode.TimeoutDisconnect:
-                Debug.Log("TimeoutDisconnect from server");
+                Debug.Log("TimeoutDisconnect from game server");
                 break;
             case StatusCode.DisconnectByServer:
-                Debug.Log("DisconnectByServer from server");
+                Debug.Log("DisconnectByServer from game server");
                 break;
             case StatusCode.DisconnectByServerUserLimit:
-                Debug.Log("DisconnectByServerUserLimit from server");
+                Debug.Log("DisconnectByServerUserLimit from game server");
                 break;
             case StatusCode.DisconnectByServerLogic:
-                Debug.Log("DisconnectByServerLogic from server");
+                Debug.Log("DisconnectByServerLogic from game server");
                 break;
             case StatusCode.Exception:
-                Debug.Log("Exeption");
+                Debug.Log("Exeption game Server");
                 break;
             default:
-                Debug.Log("Unknown status code: " + statusCode);
+                Debug.Log("Unknown status code game server: " + statusCode);
                 break;
         }
     }
@@ -150,33 +140,12 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     }
     #endregion
 
-    #region handler for responce
-    private void LoginHandler(OperationResponse operationResponse)
+    public void loadStartScene()
     {
-        if (operationResponse.OperationCode != 0)
-        {
-            ErrorCode errorCode = (ErrorCode)operationResponse.ReturnCode;
-            switch (errorCode)
-            {
-                case ErrorCode.NameIsExist:
-                    {
-                        if (OnLoginResponce != null)
-                            OnLoginResponce(this, new LoginEventArgs(ErrorCode.NameIsExist));
-                        break;
-                    }
-                default:
-                    {
-                        Debug.Log("Error: LoginHandler receive unknown code: " + operationResponse);
-                        break;
-                    }
-                    
-            }
-            return;
-        }
-        CharactedName = (string)operationResponse.Parameters[(byte)ParameterCode.CharactedName];
-        loadStartScene();
+        SceneManager.LoadScene("Game");
     }
 
+    #region handler for responce
     private void ChatMessageHandler(EventData eventData)
     {
         string massege = (string)eventData.Parameters[(byte)ParameterCode.ChatMessage];
@@ -215,7 +184,7 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
     #endregion
 
     #region Up-level Api
-    public void SendLoginOperation(string charactedName = "newName")
+    public void SendLoginOperation(string charactedName)
     {
         PhotonPeer.OpCustom((byte)OperationCode.Login,
                              new Dictionary<byte, object> { { (byte)ParameterCode.CharactedName, charactedName } }, true);

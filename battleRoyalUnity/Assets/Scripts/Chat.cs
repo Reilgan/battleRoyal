@@ -14,8 +14,8 @@ public class Chat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PhotonClient.Instanse.OnReceiveChatMessage += OnReceiveChatMessage;
-        PhotonClient.Instanse.GetRecentChatMessage();
+        GameClient.Instanse.OnReceiveChatMessage += OnReceiveChatMessage;
+        GameClient.Instanse.GetRecentChatMessage();
         uiChat = gameObject.GetComponentInChildren<Text>();
         uiInputField = gameObject.GetComponentInChildren<InputField>();
         uiInputField.onEndEdit.AddListener(onEndEdit);
@@ -29,7 +29,7 @@ public class Chat : MonoBehaviour
 
     private void onEndEdit(string text)
     {
-        PhotonClient.Instanse.SendChatMessage(text);
+        GameClient.Instanse.SendChatMessage(text);
         uiInputField.text = "";
     }
 
@@ -41,6 +41,6 @@ public class Chat : MonoBehaviour
 
     void onDestroy()
     {
-        PhotonClient.Instanse.OnReceiveChatMessage -= OnReceiveChatMessage;
+        GameClient.Instanse.OnReceiveChatMessage -= OnReceiveChatMessage;
     }
 }

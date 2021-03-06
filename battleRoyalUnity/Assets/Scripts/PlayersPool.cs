@@ -62,9 +62,9 @@ public class PlayersPool : MonoBehaviour
 
     void Start()
     {
-        PhotonClient.Instanse.OnReceivePlayerTemplate += OnReceivePlayerTemplate;
-        PhotonClient.Instanse.RequestLocalPlayerTemplate();
-        PhotonClient.Instanse.GetPlayersTemplate();
+        GameClient.Instanse.OnReceivePlayerTemplate += OnReceivePlayerTemplate;
+        GameClient.Instanse.RequestLocalPlayerTemplate();
+        GameClient.Instanse.GetPlayersTemplate();
         Players = new Dictionary<string, object>();
         //TODO Дать запрос на получение шаблона игрового объекта перенести loadStartScene в соответствующий handler
     }
@@ -78,7 +78,7 @@ public class PlayersPool : MonoBehaviour
     private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs player)
     {
         Debug.Log("Connect player:" + player.CharactedName);
-        if (player.CharactedName == PhotonClient.Instanse.CharactedName)
+        if (player.CharactedName == GameClient.Instanse.CharactedName)
         {
             CreateLocalPlayer(player);
         }
@@ -89,6 +89,6 @@ public class PlayersPool : MonoBehaviour
     }
     ~PlayersPool() 
     {
-        PhotonClient.Instanse.OnReceivePlayerTemplate -= OnReceivePlayerTemplate;
+        GameClient.Instanse.OnReceivePlayerTemplate -= OnReceivePlayerTemplate;
     }
 }
