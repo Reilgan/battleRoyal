@@ -13,6 +13,7 @@ public class ButtonChat : MonoBehaviour
         gameObject.GetComponent<Button>().onClick.AddListener(onClickedButton);
         panel = GameObject.Find("Panel");
         panel.SetActive(panelVisible);
+        ///fffhhfhfh
     }
 
     public void onClickedButton()
