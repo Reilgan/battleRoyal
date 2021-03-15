@@ -254,4 +254,9 @@ public class PhotonClient : MonoBehaviour, IPhotonPeerListener
 
     #endregion
 
+    public static void PhotonInstantiate(GameObject obj, Transform trans) // ЭТО КОНЕЧНО ЖЕ НАДО НАПИСАТЬ
+    {
+
+    }
+
 }
