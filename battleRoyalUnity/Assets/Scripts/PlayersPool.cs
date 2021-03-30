@@ -78,7 +78,7 @@ public class PlayersPool : MonoBehaviour
     private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs player)
     {
         Debug.Log("Connect player:" + player.CharactedName);
-        if (player.CharactedName == GameClient.Instanse.CharactedName)
+        if (player.CharactedName == GameClient.Instanse.Player.Name)
         {
             CreateLocalPlayer(player);
         }

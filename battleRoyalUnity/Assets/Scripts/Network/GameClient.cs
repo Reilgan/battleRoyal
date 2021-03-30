@@ -21,7 +21,6 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
     public StructPlayer Player { get; set; }
 
     public PhotonPeer PhotonPeer { get; set; }
-    public event EventHandler<LoginEventArgs> OnLoginResponce;
     public event EventHandler<ChatMessageEventArgs> OnReceiveChatMessage;
     public event EventHandler<PlayerTemlateEventArgs> OnReceivePlayerTemplate;
     public event EventHandler<MoveEventArgs> onReceiveMoveEventArgs;

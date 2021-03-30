@@ -19,13 +19,15 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
         get { return _instance; }
     }
 
+
+    #region Events
+    public event EventHandler<EnterLocalPlayerToMasterEventArgs> OnEnterLocalPlayerFromMaster;
+
+    #endregion
+
     public StructPlayer Player { get; private set; }
 
     public PhotonPeer PhotonPeer { get; set; }
-    public event EventHandler<LoginEventArgs> OnLoginResponce;
-    public event EventHandler<ChatMessageEventArgs> OnReceiveChatMessage;
-    public event EventHandler<PlayerTemlateEventArgs> OnReceivePlayerTemplate;
-    public event EventHandler<MoveEventArgs> onReceiveMoveEventArgs;
     void Awake()
     {
         if (Instanse != null)
@@ -143,8 +145,6 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
             {
                 case ErrorCode.NameIsExist:
                     {
-                        if (OnLoginResponce != null)
-                            OnLoginResponce(this, new LoginEventArgs(ErrorCode.NameIsExist));
                         break;
                     }
                 default:
@@ -159,9 +159,9 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
         StructPlayer player = new StructPlayer();
         player.DeserializationPlayerFromDict(operationResponse.Parameters);
         Player = player;
-        Debug.Log("Login Master Server:" + player.Name);
-        //Debug.Log("Player params: " + JsonConvert.SerializeObject(Player));
+        Debug.Log("Login Master Server: " + player.Name);
         loadSGarageScene();
+        OnEnterLocalPlayerFromMaster(this, new EnterLocalPlayerToMasterEventArgs(Player));
     }
     #endregion
 }
