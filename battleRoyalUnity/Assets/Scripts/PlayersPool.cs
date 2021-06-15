@@ -1,4 +1,5 @@
 ﻿using gameServer.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,19 @@ public class PlayersPool : MonoBehaviour
     {
         get { return _instance; }
     }
-    public Dictionary<string, object> Players { get; private set; }
+    public Dictionary<int, Player> Players { get; private set; }
     public Player LocalPlayer { get; private set; }
+
+    public Player getById(int id) 
+    {
+        return Players[id];
+    }
 
     private void CreateLocalPlayer(PlayerTemlateEventArgs localPlayerTemplate) 
     {
+        int id = localPlayerTemplate.Id;
         string name = localPlayerTemplate.CharactedName;
+        Dictionary<byte, object> playerInfo = localPlayerTemplate.PlayerInfo;
         if (name == null)
         {
             Debug.Log("Design error: Attempt to create a player without a name");
@@ -27,14 +35,18 @@ public class PlayersPool : MonoBehaviour
         GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         obj.name = "LocalObject";
         Player player = obj.AddComponent<Player>();
-        player.CharactedName = name;
+        player.Id = id;
+        player.Name = name;
+        player.PlayerInfo = playerInfo;
         LocalPlayer = player;
         return;
     }
 
     private void CreatePlayer(PlayerTemlateEventArgs playerTemplate)
     {
+        int id = playerTemplate.Id;
         string name = playerTemplate.CharactedName;
+        Dictionary<byte, object> playerInfo = playerTemplate.PlayerInfo;
         if (name == null)
         {
             Debug.Log("Design error: Attempt to create a player without a name");
@@ -44,8 +56,10 @@ public class PlayersPool : MonoBehaviour
         //TODO Распарсить пришедший шаблон и собрать из него объект
         GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Player player = obj.AddComponent<Player>();
-        player.CharactedName = name;
-        Players.Add(name, player);
+        player.Id = id;
+        player.Name = name;
+        player.PlayerInfo = playerInfo;
+        Players.Add(id, player);
         return;
     }
 
@@ -63,9 +77,8 @@ public class PlayersPool : MonoBehaviour
     void Start()
     {
         GameClient.Instanse.OnReceivePlayerTemplate += OnReceivePlayerTemplate;
-        GameClient.Instanse.RequestLocalPlayerTemplate();
         GameClient.Instanse.GetPlayersTemplate();
-        Players = new Dictionary<string, object>();
+        Players = new Dictionary<int, Player>();
         //TODO Дать запрос на получение шаблона игрового объекта перенести loadStartScene в соответствующий handler
     }
 
@@ -77,18 +90,25 @@ public class PlayersPool : MonoBehaviour
 
     private void OnReceivePlayerTemplate(object sender, PlayerTemlateEventArgs player)
     {
-        Debug.Log("Connect player:" + player.CharactedName);
-        if (player.CharactedName == GameClient.Instanse.Player.Name)
+        if (player.Id == SinglePlayerStruct.Instanse.Id)
         {
             CreateLocalPlayer(player);
         }
         else 
         {
+            Debug.Log("Connect player: " + player.CharactedName);
             CreatePlayer(player);
         }
     }
     ~PlayersPool() 
     {
         GameClient.Instanse.OnReceivePlayerTemplate -= OnReceivePlayerTemplate;
+    }
+
+    internal void Exit(int id)
+    {
+        Player player = getById(id);
+        Destroy(player.gameObject);
+        Players.Remove(id);
     }
 }

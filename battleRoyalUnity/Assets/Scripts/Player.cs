@@ -11,7 +11,11 @@ public class Player : MonoBehaviour
     private Vector3 oldPosition;
     private Quaternion oldQuaterion;
 
-    public string CharactedName { get; set; }
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public Dictionary<byte, object> PlayerInfo { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +27,7 @@ public class Player : MonoBehaviour
 
     private void onReceiveMoveEventArgs(object sender, MoveEventArgs e)
     {
-        if (e.CharactedName == CharactedName)
+        if (e.Id == Id)
         {
             float posX = e.PositionX;
             float posY = e.PositionY;
@@ -49,13 +53,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Id == SinglePlayerStruct.Instanse.Id)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 position = new Vector3(gameObject.transform.position.x + 1,
+                                               gameObject.transform.position.y,
+                                               gameObject.transform.position.z);
+                gameObject.transform.position = position;
+            }
+        }
     }
 
     void FixedUpdate()
     {
         // Сообщать о перемещении можно только локальному пользователю
-        if(CharactedName == GameClient.Instanse.Player.Name)
+        if(Id == SinglePlayerStruct.Instanse.Id)
         {
             SendMovingToServer();
         }
@@ -69,7 +82,7 @@ public class Player : MonoBehaviour
         if (oldPosition != position ^ oldQuaterion != rotation)
         {
             Dictionary<byte, object> moveDict = new Dictionary<byte, object>();
-            moveDict.Add((byte)ParameterCode.CharactedName, CharactedName);
+            moveDict.Add((byte)ParameterCode.Id, Id);
             moveDict.Add((byte)ParameterCode.positionX, position.x);
             moveDict.Add((byte)ParameterCode.positionY, position.y);
             moveDict.Add((byte)ParameterCode.positionZ, position.z);

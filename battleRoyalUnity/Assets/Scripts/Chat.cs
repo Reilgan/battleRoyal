@@ -15,7 +15,7 @@ public class Chat : MonoBehaviour
     void Start()
     {
         GameClient.Instanse.OnReceiveChatMessage += OnReceiveChatMessage;
-        GameClient.Instanse.GetRecentChatMessage();
+        //GameClient.Instanse.GetRecentChatMessage();
         uiChat = gameObject.GetComponentInChildren<Text>();
         uiInputField = gameObject.GetComponentInChildren<InputField>();
         uiInputField.onEndEdit.AddListener(onEndEdit);

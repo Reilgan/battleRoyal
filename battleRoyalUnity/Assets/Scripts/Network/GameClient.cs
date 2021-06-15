@@ -9,8 +9,6 @@ using gameServer.Common;
 
 public class GameClient : MonoBehaviour, IPhotonPeerListener
 {
-    //public const string CONNECTION = "31.28.27.99:5055";
-    public const string CONNECTION = "localhost:5056";
     private const string APP_NAME = "GameServer";
 
     public static GameClient _instance;
@@ -18,12 +16,12 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
     {
         get { return _instance; }
     } 
-    public StructPlayer Player { get; set; }
 
     public PhotonPeer PhotonPeer { get; set; }
     public event EventHandler<ChatMessageEventArgs> OnReceiveChatMessage;
     public event EventHandler<PlayerTemlateEventArgs> OnReceivePlayerTemplate;
     public event EventHandler<MoveEventArgs> onReceiveMoveEventArgs;
+
     void Awake()
     {
         if (Instanse != null)
@@ -38,14 +36,14 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
     void Start()
     {
         PhotonPeer = new PhotonPeer(this, ConnectionProtocol.Udp);
-        Connect();
     }
 
-    private void Connect()
+    public void Connect(string CONNECTION)
     {
         if (PhotonPeer != null)
         {
             PhotonPeer.Connect(CONNECTION, APP_NAME);
+
         }
     }
 
@@ -68,27 +66,35 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
         
     }
 
+    void OnApplicationQuit()
+    {
+        ExitFromGameServer();
+    }
+
     #region IPhotonPeerListener
     public void OnOperationResponse(OperationResponse operationResponse)
     {
 
         switch (operationResponse.OperationCode)
         {
-            case (byte)OperationCode.GetPlayersTemplate:
+            case (byte)OperationCode.GetPlayersInRoom:
                 GetPlayersTemplateHandler(operationResponse);
+                break;
+            case (byte)OperationCode.EnterInGameServer:
+                FindRoom();
                 break;
             default:
                 Debug.Log("Unknown OperationResponse:" + operationResponse.OperationCode);
                 break;
         }
     }
-
     public void OnStatusChanged(StatusCode statusCode)
     {
         switch (statusCode)
         {
             case StatusCode.Connect:
                 Debug.Log("Connect to game server");
+                EnterInGameServer(SinglePlayerStruct.Instanse);
                 break;
             case StatusCode.Disconnect:
                 Debug.Log("Disconnect to game server");
@@ -127,6 +133,12 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
             case (byte)EventCode.Move:
                 moveEventHandler(eventData);
                 break;
+            case (byte)EventCode.RoomReady:
+                RoomReadyHandler(eventData);
+                break;
+            case (byte)EventCode.PlayerExitFromGameServer:
+                PlayerExitFromGameServerHandler(eventData);
+                break;
             default:
                 Debug.Log("Unknown event: " + eventData.Code);
                 break;
@@ -139,10 +151,24 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
     }
     #endregion
 
-    public void loadStartScene()
+
+    #region handler for event
+    private void RoomReadyHandler(EventData eventData)
     {
+        Debug.Log("Enter in Room with id: " + eventData.Parameters[(byte)ParameterCode.IdRoom]);
         SceneManager.LoadScene("Game");
     }
+
+    private void PlayerExitFromGameServerHandler(EventData eventData)
+    {
+        int id = (int)eventData.Parameters[(byte)ParameterCode.Id];
+        PlayersPool.Instanse.Exit(id);
+        if (id == SinglePlayerStruct.Instanse.Id) {
+            Disconnect();
+        }
+    }
+
+    #endregion
 
     #region handler for responce
     private void ChatMessageHandler(EventData eventData)
@@ -175,6 +201,7 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
 
     private void GetPlayersTemplateHandler(OperationResponse response)
     {
+
         if (OnReceivePlayerTemplate != null)
         {
             OnReceivePlayerTemplate(this, new PlayerTemlateEventArgs(response.Parameters));
@@ -183,10 +210,22 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
     #endregion
 
     #region Up-level Api
-    public void SendLoginOperation(string charactedName)
+    private void FindRoom()
     {
-        PhotonPeer.OpCustom((byte)OperationCode.Login,
-                             new Dictionary<byte, object> { { (byte)ParameterCode.CharactedName, charactedName } }, true);
+        Dictionary<byte, object> param = new Dictionary<byte, object>();
+        param.Add((byte)ParameterCode.Id, SinglePlayerStruct.Instanse.Id);
+        param.Add((byte)ParameterCode.RoomType, RoomTypeCode.Room_1x1);
+        PhotonPeer.OpCustom((byte)OperationCode.FindRoom,
+                            param,
+                            true);
+    }
+
+    public void EnterInGameServer(SinglePlayerStruct player)
+    {
+        PhotonPeer.OpCustom((byte)OperationCode.EnterInGameServer,
+                                player.SerializationPlayerToDict(),
+                                true);
+     
     }
 
     public void SendChatMessage(string message)
@@ -200,11 +239,6 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
         PhotonPeer.OpCustom((byte)OperationCode.GetRecentChatMessages, new Dictionary<byte, object>(), true);
     }
 
-    public void RequestLocalPlayerTemplate()
-    {
-        PhotonPeer.OpCustom((byte)OperationCode.GetLocalPlayerTemplate, new Dictionary<byte, object>(), true);
-    }
-
     public void SendMovingToServer(Dictionary<byte, object> parametrs)
     {
         PhotonPeer.OpCustom((byte)OperationCode.Move,
@@ -214,9 +248,13 @@ public class GameClient : MonoBehaviour, IPhotonPeerListener
 
     public void GetPlayersTemplate()
     {
-        PhotonPeer.OpCustom((byte)OperationCode.GetPlayersTemplate, new Dictionary<byte, object>(), true);
+        PhotonPeer.OpCustom((byte)OperationCode.GetPlayersInRoom, new Dictionary<byte, object>(), true);
     }
 
+    public void ExitFromGameServer() 
+    {
+        PhotonPeer.OpCustom((byte)OperationCode.ExitFromGameServer, new Dictionary<byte, object>(), true);
+    }
     #endregion
 
 }

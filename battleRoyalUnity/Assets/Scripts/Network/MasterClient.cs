@@ -19,15 +19,8 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
         get { return _instance; }
     }
 
-
-    #region Events
-    public event EventHandler<EnterLocalPlayerToMasterEventArgs> OnEnterLocalPlayerFromMaster;
-
-    #endregion
-
-    public StructPlayer Player { get; private set; }
-
     public PhotonPeer PhotonPeer { get; set; }
+    
     void Awake()
     {
         if (Instanse != null)
@@ -35,6 +28,7 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
         DontDestroyOnLoad(gameObject);
         Application.runInBackground = true;
         _instance = this;
+        new SinglePlayerStruct();
 
     }
 
@@ -72,6 +66,11 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
 
     }
 
+    void OnApplicationQuit() {
+        Disconnect();
+    }
+
+
     public void DebugReturn(DebugLevel level, string message)
     {
         Debug.Log("Master DebugRetutn: " + message);
@@ -82,8 +81,15 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
         switch (operationResponse.OperationCode)
         {
             case (byte)OperationCode.Login:
-                LoginHandler(operationResponse);
-                break;
+                {
+                    LoginHandler(operationResponse);
+                    break;
+                }
+            case (byte)OperationCode.GetGameServerIP:
+                {
+                    GetGameServerIPHandler(operationResponse);
+                    break;
+                }
         }
     }
 
@@ -127,18 +133,20 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
     public void SendLoginOperation(string charactedName)
     {
         PhotonPeer.OpCustom((byte)OperationCode.Login,
-                             new Dictionary<byte, object> { { (byte)ParameterCode.CharactedName, charactedName } }, true);
+                             new Dictionary<byte, object> { { (byte)ParameterCode.CharactedName, charactedName } }, 
+                             true);
     }
 
-    public void loadSGarageScene()
+    public void GetGameServerIP()
     {
-        SceneManager.LoadScene("Garage");
+        PhotonPeer.OpCustom((byte)OperationCode.GetGameServerIP,
+                             new Dictionary<byte, object> {}, true);
     }
 
-    #region
+    #region handler for responce
     private void LoginHandler(OperationResponse operationResponse)
     {
-        if (operationResponse.OperationCode != 0)
+        if (operationResponse.OperationCode != (byte)OperationCode.Login)
         {
             ErrorCode errorCode = (ErrorCode)operationResponse.ReturnCode;
             switch (errorCode)
@@ -152,16 +160,22 @@ public class MasterClient : MonoBehaviour, IPhotonPeerListener
                         Debug.Log("Error: LoginHandler receive unknown code: " + operationResponse);
                         break;
                     }
-
             }
             return;
         }
-        StructPlayer player = new StructPlayer();
-        player.DeserializationPlayerFromDict(operationResponse.Parameters);
-        Player = player;
-        Debug.Log("Login Master Server: " + player.Name);
-        loadSGarageScene();
-        OnEnterLocalPlayerFromMaster(this, new EnterLocalPlayerToMasterEventArgs(Player));
+        SinglePlayerStruct.Instanse.DeserializationPlayerFromDict(operationResponse.Parameters);
+        Dictionary<byte, object> parms = (Dictionary<byte, object>)operationResponse.Parameters[(byte)ParameterCode.PlayerInfo];
+        SceneManager.LoadScene("Garage");
     }
+
+    private void GetGameServerIPHandler(OperationResponse operationResponse)
+    {
+        string CONNECTION = (string)operationResponse.Parameters[(byte)ParameterCode.GameServerId];
+        Debug.Log("GameServerIP: " + CONNECTION);
+        //Подлючение к GameServer
+        GameClient.Instanse.Connect(CONNECTION);
+    }
+
+
     #endregion
 }
